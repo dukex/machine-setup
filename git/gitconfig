@@ -1,3 +1,7 @@
+[user]
+	email = dukekhaos@gmail.com
+	name = Duke
+
 # set your user tokens as environment variables, such as ~/.secrets
 # See the README for examples.
 [color]
@@ -46,7 +50,9 @@
   last = diff HEAD^                 # diff last committed change
 
   # log
-  l = log --graph --date=short
+  l = log --decorate --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %Cblue%an%Creset - %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+  lx = log --graph --date=short
+
   changes = log --pretty=format:\"%h %cr %cn %Cgreen%s%Creset\" --name-status
   short = log --pretty=format:\"%h %cr %cn %Cgreen%s%Creset\"
   simple = log --pretty=format:\" * %s\"
@@ -79,7 +85,7 @@
 
   # status
   s = status                        # status
-  st = status                       # status
+  st = status -s                    # status
   stat = status                     # status
 
   # tag
@@ -89,8 +95,12 @@
   svnr = svn rebase
   svnd = svn dcommit
   svnl = svn log --oneline --show-commit
+
+  who = shotlog -s --
 [format]
-  pretty = format:%C(blue)%ad%Creset %C(yellow)%h%C(green)%d%Creset %C(blue)%s %C(magenta) [%an]%Creset
+  pretty = %Cred%h%Creset -%C(yellow)%d%Creset %Cblue%an%Creset - %s %Cgreen(%cr)%Creset
+  prettyx = format:%C(blue)%ad%Creset %C(yellow)%h%C(green)%d%Creset %C(blue)%s %C(magenta) [%an]%Creset
+
 [mergetool]
   prompt = false
 [mergetool "mvimdiff"]
