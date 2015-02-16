@@ -27,7 +27,10 @@ runtime appearance.vundle
 runtime textobjects.vundle
 runtime search.vundle
 runtime project.vundle
+runtime golang.vundle
+runtime autosave.vundle
 runtime vim-improvements.vundle
+
 
 " The plugins listed in ~/.vim/.vundles.local will be added here to
 " allow the user to add vim plugins to yadr without the need for a fork.
