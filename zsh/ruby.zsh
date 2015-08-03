@@ -1,1 +1,3 @@
-chruby 2.1.3
+RUBIES+=(~/.rubies/*)
+
+chruby 2.2.2
