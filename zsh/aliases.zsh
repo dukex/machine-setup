@@ -210,3 +210,5 @@ alias dbmu='spring rake db:migrate:up'
 alias brewu='brew update && brew upgrade && brew cleanup && brew prune && brew doctor'
 
 alias open='xdg-open'
+
+alias deploy='gpsh & git push heroku master'
