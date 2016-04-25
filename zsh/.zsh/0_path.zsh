@@ -1,7 +1,6 @@
 # path, the 0 in the filename causes this to load first
 path=(
+  /usr/bin
   $path
-  $HOME/.yadr/bin
-  $HOME/.yadr/bin/yadr
+  $HOME/.bin
 )
-
