@@ -14,6 +14,7 @@ install: ruby-install chruby vim-install submodules
 	$(call install_,vim)
 	$(call install_,zsh)
 	$(call install_,prezto)
+	$(call install_,bin)
 	$(call link_,./prezto/.zprezto/runcoms/z*,$(HOME))
 	# run %{ ln -nfs "$HOME/.yadr/zsh/prezto-override/zpreztorc" "${ZDOTDIR:-$HOME}/.zpreztorc" }
 
