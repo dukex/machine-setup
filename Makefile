@@ -1,4 +1,4 @@
-RUBY=2.2.2
+RUBY=2.3.1
 
 # Functions
 install_ = stow -R $1
