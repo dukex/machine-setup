@@ -1,6 +1,7 @@
 [user]
-	email = dukekhaos@gmail.com
+    useConfigOnly = true
 	name = Duke
+	email = emersonalmeidax@gmail.com
 
 # set your user tokens as environment variables, such as ~/.secrets
 # See the README for examples.
