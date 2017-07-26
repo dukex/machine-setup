@@ -1,5 +1,5 @@
-source /usr/local/share/chruby/chruby.sh
+source /usr/share/chruby/chruby.sh
 
 RUBIES+=(/opt/rubies/*)
 
-chruby 2.3.0
+chruby 2.4.1
