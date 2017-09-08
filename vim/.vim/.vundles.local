@@ -1,4 +1,0 @@
-Bundle 'vim-scripts/fountain.vim'
-Bundle 'mattn/emmet-vim'
-Bundle 'nono/vim-handlebars'
-Bundle 'moll/vim-bbye'

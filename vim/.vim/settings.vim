@@ -1,6 +1,9 @@
 let vimsettings = '~/.vim/settings'
 let uname = system("uname -s")
 
+set rtp+=~/.vim/colors/
+runtime Tomorrow-Night-Eighties.vim
+
 for fpath in split(globpath(vimsettings, '*.vim'), '\n')
 
   if (fpath == expand(vimsettings) . "/keymap-mac.vim") && uname[:4] ==? "linux"
@@ -13,3 +16,4 @@ for fpath in split(globpath(vimsettings, '*.vim'), '\n')
 
   exe 'source' fpath
 endfor
+

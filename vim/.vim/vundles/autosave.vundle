@@ -1,2 +1,2 @@
-Bundle 'vim-scripts/vim-auto-save'
+Plugin 'vim-scripts/vim-auto-save'
 
