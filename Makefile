@@ -4,7 +4,7 @@ RUBY=2.4.1
 install_ = stow -t $(HOME) -R $1
 link_ = for f in $1; do ln -sf $$(realpath $$f) $(2)/.$$(basename $$f); done
 
-install: ruby-install chruby submodules stow fasd zsh
+install: asdf vundles submodules stow fasd zsh
 	$(call install_,git)
 	$(call install_,irb)
 	$(call install_,ruby)
@@ -26,25 +26,15 @@ install: ruby-install chruby submodules stow fasd zsh
 	chsh -s /usr/bin/zsh
 	make fonts-install
 	# bundle config --global jobs $( nproc )
+	sudo pacman -Sy jdk8-openjdk # you need Java for Clojure
+	asdf install clojure 1.8.0
+	asdf global clojure 1.8.0
+
 
 fonts-install:
 	mkdir -p $(HOME)/.fonts
 	cp ./fonts/* $(HOME)/.fonts
 	fc-cache -vf $(HOME)/.fonts
-
-
-/opt/rubies/ruby-$(RUBY)/bin/ruby:
-	ruby-install --rubies-dir /opt/rubies ruby $(RUBY)
-
-/usr/share/chruby/chruby.sh: /opt/rubies/ruby-$(RUBY)/bin/ruby
-	pacaur -S chruby
-
-/usr/bin/ruby-install:
-	pacaur -Syu ruby-install
-
-ruby-install: /usr/bin/ruby-install
-
-chruby: /usr/share/chruby/chruby.sh
 
 $(HOME)/.vim/bundle/vundle:
 	git clone https://github.com/gmarik/vundle.git $(HOME)/.vim/bundle/vundle
@@ -70,3 +60,21 @@ fasd: /usr/bin/fasd
 	pacaur -S zsh
 
 zsh: /usr/bin/zsh
+
+
+~/.asdf:
+	git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.3.0
+
+~/.zsh.after/asdf.zsh:
+	touch ~/.zsh.after/asdf.zsh
+	echo -e '\n. $(HOME)/.asdf/asdf.sh' >> ~/.zsh.after/asdf.zsh
+	echo -e '\n. $(HOME)/.asdf/completions/asdf.bash' >> ~/.zsh.after/asdf.zsh
+	asdf plugin-add clojure https://github.com/vic/asdf-clojure.git
+	asdf plugin-add elixir https://github.com/asdf-vm/asdf-elixir.git
+	asdf plugin-add erlang https://github.com/asdf-vm/asdf-erlang.git
+	asdf plugin-add golang https://github.com/kennyp/asdf-golang.git
+	asdf plugin-add ruby https://github.com/asdf-vm/asdf-ruby.git
+	asdf plugin-add rust https://github.com/code-lever/asdf-rust.git
+	asdf plugin-add nodejs https://github.com/asdf-vm/asdf-nodejs.git
+
+asdf: ~/.asdf ~/.zsh.after/asdf.zsh
