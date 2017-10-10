@@ -4,4 +4,5 @@ path=(
   /usr/local/{bin,sbin}
   $path
   $HOME/.bin
+  $HOME/bin
 )

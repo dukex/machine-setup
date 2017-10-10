@@ -1,10 +1,8 @@
-RUBY=2.4.1
-
 # Functions
 install_ = stow -t $(HOME) -R $1
 link_ = for f in $1; do ln -sf $$(realpath $$f) $(2)/.$$(basename $$f); done
 
-install: asdf vundles submodules stow fasd zsh
+install: asdf fonts-install vundles submodules stow fasd zsh
 	$(call install_,git)
 	$(call install_,irb)
 	$(call install_,ruby)
@@ -61,9 +59,8 @@ fasd: /usr/bin/fasd
 
 zsh: /usr/bin/zsh
 
-
 ~/.asdf:
-	git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.3.0
+	git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.4.0
 
 ~/.zsh.after/asdf.zsh:
 	touch ~/.zsh.after/asdf.zsh
