@@ -1,2 +1,2 @@
 " Tab navigation like Firefox.
-nnoremap <S-tab>   :tabnext<CR>
+nnoremap <S-tab> :tabnext<CR>
