@@ -2,7 +2,7 @@
 install_ = stow -t $(HOME) -R $1
 link_ = for f in $1; do ln -sf $$(realpath $$f) $(2)/.$$(basename $$f); done
 
-install: asdf fonts-install vundles submodules stow fasd zsh
+install: asdf fonts-install vundles submodules stow fasd zsh tpm
 	$(call install_,git)
 	$(call install_,irb)
 	$(call install_,ruby)
@@ -14,7 +14,6 @@ install: asdf fonts-install vundles submodules stow fasd zsh
 	$(call install_,prezto)
 	$(call install_,bin)
 	$(call link_,./prezto/.zprezto/runcoms/z*,$(HOME))
-	# run %{ ln -nfs "$HOME/.yadr/zsh/prezto-override/zpreztorc" "${ZDOTDIR:-$HOME}/.zpreztorc" }
 
 	echo 'for config_file ($(HOME)/.zsh/*.zsh) source $$config_file' >> ~/.zshrc
 
@@ -23,10 +22,6 @@ install: asdf fonts-install vundles submodules stow fasd zsh
 	mkdir -p $(HOME)/.zsh.prompts
 	chsh -s /usr/bin/zsh
 	make fonts-install
-	# bundle config --global jobs $( nproc )
-	sudo pacman -Sy jdk8-openjdk # you need Java for Clojure
-	asdf install clojure 1.8.0
-	asdf global clojure 1.8.0
 
 
 fonts-install:
@@ -75,3 +70,8 @@ zsh: /usr/bin/zsh
 	asdf plugin-add nodejs https://github.com/asdf-vm/asdf-nodejs.git
 
 asdf: ~/.asdf ~/.zsh.after/asdf.zsh
+
+tpm: ~/.tmux/plugins/tpm
+
+~/.tmux/plugins/tpm:
+	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
