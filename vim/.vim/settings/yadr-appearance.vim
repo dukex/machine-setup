@@ -13,13 +13,13 @@ if has("gui_running")
   set lines=60
   set columns=190
 
-  set guifont=Menlo\ 15
-
-  if has("gui_gtk2")
-  else
-  end
+  " set guifont=Menlo\ 15
+  set guifont=Fira\ Code\ 23
+  set macligatures
 else
   let g:CSApprox_loaded = 1
 endif
 
 colorscheme base16-tomorrow-night
+
+
