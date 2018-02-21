@@ -1,7 +1,7 @@
 [user]
   useConfigOnly = true
-	name = Emerson \"Duke\" Almeida
-	email = duke.m16@gmail.com
+  name = Emerson \"Duke\" Almeida
+  email = duke.m16@gmail.com
 
 # set your user tokens as environment variables, such as ~/.secrets
 # See the README for examples.
@@ -112,7 +112,7 @@
   default = upstream
 [core]
   autocrlf = false
-  editor = vim
+  editor = nvim
   excludesfile = ~/.gitignore
 [advice]
   statusHints = false
