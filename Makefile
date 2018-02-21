@@ -2,21 +2,19 @@
 install_ = stow -t $(HOME) -R $1
 link_ = for f in $1; do ln -sf $$(realpath $$f) $(2)/.$$(basename $$f); done
 
-install: asdf fonts-install vundles submodules stow fasd zsh tpm
+install: nvim asdf fonts-install vim-plug submodules stow fasd zsh tpm
 	$(call install_,git)
 	$(call install_,irb)
 	$(call install_,ruby)
 	$(call install_,ctags)
 	$(call install_,tmux)
 	$(call install_,vimify)
-	$(call install_,vim)
+	$(call install_,nvim)
 	$(call install_,zsh)
 	$(call install_,prezto)
 	$(call install_,bin)
 	$(call link_,./prezto/.zprezto/runcoms/z*,$(HOME))
-
 	echo 'for config_file ($(HOME)/.zsh/*.zsh) source $$config_file' >> ~/.zshrc
-
 	mkdir -p $(HOME)/.zsh.before
 	mkdir -p $(HOME)/.zsh.after
 	mkdir -p $(HOME)/.zsh.prompts
@@ -29,11 +27,13 @@ fonts-install:
 	cp ./fonts/* $(HOME)/.fonts
 	fc-cache -vf $(HOME)/.fonts
 
-$(HOME)/.vim/bundle/vundle:
-	git clone https://github.com/gmarik/vundle.git $(HOME)/.vim/bundle/vundle
+$(HOME)/.local/share/nvim/site/autoload/plug.vim:
+	curl -fLo $(HOME)/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+		https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-vundles: $(HOME)/.vim/bundle/vundle
-	vim +BundleInstall +qall
+
+vim-plug: $(HOME)/.local/share/nvim/site/autoload/plug.vim
+	nvim +PlugInstall +qall
 
 submodules:
 	git submodule update --init --recursive
@@ -75,3 +75,6 @@ tpm: ~/.tmux/plugins/tpm
 
 ~/.tmux/plugins/tpm:
 	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+nvim:
+	pacaur -S nvim
