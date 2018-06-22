@@ -7,6 +7,8 @@ let g:netrw_liststyle = 3
 let g:netrw_browse_split = 4
 let g:netrw_altv = 1
 let g:netw_winzie = 25
+let g:rspec_command = "Dispatch bundle exec rspec {spec}"
+
 nnoremap <Leader>e :Vexplore<Enter>
 
 call plug#begin('~/.config/nvim/plugged')
@@ -18,31 +20,37 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'rking/ag.vim'
 
-" run tests from vim
-Plug 'janko-m/vim-test'
-
-"" netw improve
-Plug 'tpope/vim-vinegar'
-
-"" asynchronously run plograms
+"" asynchronously run file checker
 Plug 'neomake/neomake'
+Plug 'rainerborene/vim-reek'
+
+"" Completation
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+
+" Ctags
+" Plug 'ludovicchabant/vim-gutentags'
+
+Plug 'tpope/vim-vinegar'
+Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-rails'
+Plug 'tpope/vim-fugitive'
+Plug 'thoughtbot/vim-rspec'
 
 call plug#end()
 
-"" setup vim-test
-let test#strategy = {
-  \ 'nearest': 'neovim',
-  \ 'file':    'neovim',
-  \ 'suite':   'neovim',
-  \}
+set termguicolors
+set background=light
 
-""" these "Ctrl mappings" work well when Caps Lock is mapped to Ctrl
-nmap <silent> t<C-n> :TestNearest<CR> " t Ctrl+n
-nmap <silent> t<C-f> :TestFile<CR>    " t Ctrl+f
-nmap <silent> t<C-s> :TestSuite<CR>   " t Ctrl+s
-nmap <silent> t<C-l> :TestLast<CR>    " t Ctrl+l
-nmap <silent> t<C-g> :TestVisit<CR>   " t Ctrl+g
+" RSpec.vim mappings
+map <Leader>rc :call RunCurrentSpecFile()<CR>
+map <Leader>re :call RunNearestSpec()<CR>
+map <Leader>ra :call RunAllSpecs()<CR>
 
+" Deploy
+map <Leader>d :Dispatch! bin/deploy<CR>
+
+" Reload config
+map <Leader>rr :source ~/.config/nvim/init.vim<CR>
 
 "" using ,t to fuzzy find
 nnoremap <Leader>t :FZF<CR>
@@ -63,10 +71,6 @@ set numberwidth=4
 " Display extra whitespace
 set list listchars=tab:»·,trail:·,nbsp:·
 
-" Also highlight all tabs and trailing whitespace characters.
-highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
-match ExtraWhitespace /\s\+$\|\t/
-
 " natural split opening
 set splitbelow
 set splitright
@@ -80,3 +84,31 @@ fun! <SID>StripTrailingWhitespaces()
 endfun
 
 autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
+
+" enable deoplete
+let g:deoplete#enable_at_startup = 1
+
+let $FZF_DEFAULT_COMMAND = 'ag -g ""'
+
+
+" Run a given vim command on the results of alt from a given path.
+" See usage below.
+function! AltCommand(path, vim_command)
+  let l:alternate = system("alt " . a:path)
+  if empty(l:alternate)
+    echo "No alternate file for " . a:path . " exists!"
+  else
+    exec a:vim_command . " " . l:alternate
+  endif
+endfunction
+
+" Find the alternate file for the current path and open it
+nnoremap <leader>. :w<cr>:call AltCommand(expand('%'), ':vsplit')<cr>
+
+vnoremap <C-c> :norm i
+map <C-n> :norm x<CR>
+
+" fold
+set foldcolumn=0    " visual representation of folds
+set foldmethod=syntax
+set nofoldenable

@@ -20,4 +20,4 @@ colors
 setopt prompt_subst
 
 # RPROMPT='$(_git_repo_name) $(_git_branch_name) $(_git_is_dirty)'
-RPROMPT='$(_git_is_dirty) $(_git_repo_name) $(_git_branch_name)'
+RPROMPT='$(_git_is_dirty)$(_git_branch_name) %1d'
