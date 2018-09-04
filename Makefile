@@ -2,7 +2,7 @@
 install_ = stow -t $(HOME) -R $1
 link_ = for f in $1; do ln -sf $$(realpath $$f) $(2)/.$$(basename $$f); done
 
-install: nvim asdf fonts-install vim-plug submodules stow fasd zsh tpm
+install: nvim emacs asdf fonts-install vim-plug submodules stow fasd zsh tpm
 	$(call install_,git)
 	$(call install_,irb)
 	$(call install_,ruby)
@@ -13,6 +13,7 @@ install: nvim asdf fonts-install vim-plug submodules stow fasd zsh tpm
 	$(call install_,zsh)
 	$(call install_,prezto)
 	$(call install_,bin)
+	$(call install_,emacs)
 	$(call link_,./prezto/.zprezto/runcoms/z*,$(HOME))
 	echo 'for config_file ($(HOME)/.zsh/*.zsh) source $$config_file' >> ~/.zshrc
 	mkdir -p $(HOME)/.zsh.before
@@ -20,7 +21,6 @@ install: nvim asdf fonts-install vim-plug submodules stow fasd zsh tpm
 	mkdir -p $(HOME)/.zsh.prompts
 	chsh -s /usr/bin/zsh
 	make fonts-install
-
 
 fonts-install:
 	mkdir -p $(HOME)/.fonts
@@ -78,3 +78,8 @@ tpm: ~/.tmux/plugins/tpm
 
 nvim:
 	pacaur -S nvim
+
+emacs: ~/.emacs.d
+
+~/.emacs.d:
+	git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
