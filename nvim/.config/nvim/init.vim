@@ -15,6 +15,8 @@ call plug#begin('~/.config/nvim/plugged')
 
 " Plugins
 
+Plug 'dracula/vim', { 'as': 'dracula' }
+
 "" Fuzzy file search
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -23,6 +25,8 @@ Plug 'rking/ag.vim'
 "" asynchronously run file checker
 Plug 'neomake/neomake'
 Plug 'rainerborene/vim-reek'
+Plug 'kagux/vim-rubocop-autocorrect'
+Plug 'szw/vim-maximizer'
 
 "" Completation
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -35,6 +39,9 @@ Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-fugitive'
 Plug 'thoughtbot/vim-rspec'
+
+" Elixir
+Plug 'slashmili/alchemist.vim'
 
 call plug#end()
 
@@ -112,3 +119,8 @@ map <C-n> :norm x<CR>
 set foldcolumn=0    " visual representation of folds
 set foldmethod=syntax
 set nofoldenable
+
+nnoremap <silent><leader>z :MaximizerToggle<CR>
+vnoremap <silent><leader>z :MaximizerToggle<CR>gv
+inoremap <silent><leader>z <C-o>:MaximizerToggle<CR>
+
