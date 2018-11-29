@@ -15,3 +15,4 @@ vim/sessions
 bin/subl
 tags
 nvim/.config/nvim/plugged
+bin/bin
