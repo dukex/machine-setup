@@ -1,0 +1,11 @@
+#!/bin/bash
+
+declare -A profiles
+
+profiles=(
+  ["p"]="emersonalmeidax@gmail.com"
+  ["w"]="emerson.almeida@youse.com.br"
+  ["m"]="emerson@megafono.host"
+)
+
+/usr/lib/firefox-developer-edition/firefox -P "${profiles[$1]}" 2> /dev/null &

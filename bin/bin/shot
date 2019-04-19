@@ -1,0 +1,13 @@
+#!/bin/bash
+
+set +x
+pids=$(ps aux | ag $1 | ag -v 'ag ' | ag -v shot | awk '{print $2}')
+
+if [ "$pids" != "" ]
+then
+   sudo kill -9 $pids
+   echo "-> killed pids"
+   echo "${pids}"
+else
+   echo "-> no process found"
+fi
