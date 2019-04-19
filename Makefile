@@ -2,7 +2,7 @@
 install_ = stow -t $(HOME) -R $1
 link_ = for f in $1; do ln -sf $$(realpath $$f) $(2)/.$$(basename $$f); done
 
-install: wget emacs asdf fonts-install submodules stow fasd zsh tpm zsh-syntax-highlighting enpass arc-theme arch-update ag docker docker-compose apps app-indicator steam
+install: yay wget emacs asdf fonts-install submodules stow fasd zsh tpm zsh-syntax-highlighting enpass arc-theme arch-update ag docker docker-compose apps app-indicator steam
 	$(call install_,git)
 	$(call install_,irb)
 	$(call install_,ruby)
@@ -164,3 +164,8 @@ app-indicator:
 
 steam:
 	flatpak --user remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo && flatpak --user install flathub com.valvesoftware.Steam && flatpak override com.valvesoftware.Steam --filesystem=$(HOME)
+
+yay: /usr/bin/yay
+
+/usr/bin/yay:
+  git clone https://aur.archlinux.org/yay.git /tmp/yay && cd /tmp/yay && makepkg -si
