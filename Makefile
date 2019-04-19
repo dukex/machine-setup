@@ -2,7 +2,7 @@
 install_ = stow -t $(HOME) -R $1
 link_ = for f in $1; do ln -sf $$(realpath $$f) $(2)/.$$(basename $$f); done
 
-install: emacs asdf fonts-install submodules stow fasd zsh tpm zsh-syntax-highlighting enpass arc-theme arch-update
+install: wget emacs asdf fonts-install submodules stow fasd zsh tpm zsh-syntax-highlighting enpass arc-theme arch-update ag
 	$(call install_,git)
 	$(call install_,irb)
 	$(call install_,ruby)
@@ -21,7 +21,10 @@ install: emacs asdf fonts-install submodules stow fasd zsh tpm zsh-syntax-highli
 	chsh -s /usr/bin/zsh
 	make fonts-install
 
-fonts-install:
+wget:
+	sudo pacman -S --noconfirm wget
+
+fonts-install: fira-code
 	mkdir -p $(HOME)/.fonts
 	cp ./fonts/* $(HOME)/.fonts
 	fc-cache -vf $(HOME)/.fonts
@@ -106,13 +109,10 @@ asdf-languages:
 	make asdf-rust
 	make asdf-nodejs
 
-
-
 emacs: ~/.emacs.d
 
 ~/.emacs.d:
 	git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
-
 
 /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh:
 	yay -S -a --norebuild --noconfirm zsh-syntax-highlighting-git
@@ -127,3 +127,9 @@ arc-theme:
 
 arch-update:
 	yay -S -a --norebuild --noconfirm gnome-shell-extension-arch-update
+
+fira-code:
+	sudo pacman -S otf-fira-code
+
+ag:
+	sudo pacman -S --noconfirm the_silver_searcher

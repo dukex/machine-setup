@@ -86,7 +86,7 @@
    dotspacemacs-themes '(spacemacs-dark)
    dotspacemacs-colorize-cursor-according-to-state t
 
-   dotspacemacs-default-font '(("FuraCode Nerd Font Mono"
+   dotspacemacs-default-font '(("FiraCode Mono"
                                 :size 16
                                 :weight medium
                                 :width normal
