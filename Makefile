@@ -2,7 +2,7 @@
 install_ = stow -t $(HOME) -R $1
 link_ = for f in $1; do ln -sf $$(realpath $$f) $(2)/.$$(basename $$f); done
 
-install: wget emacs asdf fonts-install submodules stow fasd zsh tpm zsh-syntax-highlighting enpass arc-theme arch-update ag docker docker-compose apps
+install: wget emacs asdf fonts-install submodules stow fasd zsh tpm zsh-syntax-highlighting enpass arc-theme arch-update ag docker docker-compose apps app-indicator steam
 	$(call install_,git)
 	$(call install_,irb)
 	$(call install_,ruby)
@@ -151,3 +151,16 @@ docker-compose: /usr/local/bin/docker-compose
 apps:
 	sudo pacman -S --needed --noconfirm firefox-developer-edition
 	sudo pacman -S --needed --noconfirm telegram-desktop
+	sudo pacman -S --needed --noconfirm flatpak && flatpak install flathub com.frac_tion.teleport
+	yay -S -a --norebuild --noconfirm --needed spotify
+	yay -S -a --norebuild --noconfirm --needed gcsf-git
+	gcsf login $(USER)
+	mkdir -p ~/drive
+	sudo sed -i 's/#user_allow_other/user_allow_other/g' /etc/fuse.conf
+	gcsf mount ~/drive -s $(USER)
+
+app-indicator:
+	mkdir -p ~/.local/share/gnome-shell/extensions && git clone git@github.com:ubuntu/gnome-shell-extension-appindicator.git ~/.local/share/gnome-shell/extensions/appindicatorsupport@rgcjonas.gmail.com && gnome-shell-extension-tool -e appindicatorsupport@rgcjonas.gmail.com
+
+steam:
+	flatpak --user remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo && flatpak --user install flathub com.valvesoftware.Steam && flatpak override com.valvesoftware.Steam --filesystem=$(HOME)
