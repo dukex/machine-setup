@@ -86,7 +86,7 @@
    dotspacemacs-themes '(spacemacs-dark)
    dotspacemacs-colorize-cursor-according-to-state t
 
-   dotspacemacs-default-font '(("FiraCode Mono"
+   dotspacemacs-default-font '(("Fira Code Retina"
                                 :size 16
                                 :weight medium
                                 :width normal

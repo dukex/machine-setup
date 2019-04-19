@@ -2,7 +2,7 @@
 install_ = stow -t $(HOME) -R $1
 link_ = for f in $1; do ln -sf $$(realpath $$f) $(2)/.$$(basename $$f); done
 
-install: wget emacs asdf fonts-install submodules stow fasd zsh tpm zsh-syntax-highlighting enpass arc-theme arch-update ag docker docker-compose
+install: wget emacs asdf fonts-install submodules stow fasd zsh tpm zsh-syntax-highlighting enpass arc-theme arch-update ag docker docker-compose apps
 	$(call install_,git)
 	$(call install_,irb)
 	$(call install_,ruby)
@@ -22,7 +22,7 @@ install: wget emacs asdf fonts-install submodules stow fasd zsh tpm zsh-syntax-h
 	make fonts-install
 
 wget:
-	sudo pacman -S --noconfirm wget
+	sudo pacman -S --needed --noconfirm wget
 
 fonts-install: fira-code
 	mkdir -p $(HOME)/.fonts
@@ -34,7 +34,7 @@ submodules:
 	git submodule update --recursive
 
 /usr/bin/stow:
-	sudo pacman -S stow
+	sudo pacman -S --needed stow
 
 stow: /usr/bin/stow
 
@@ -44,7 +44,7 @@ stow: /usr/bin/stow
 fasd: /usr/bin/fasd
 
 /usr/bin/zsh:
-	sudo pacman -S zsh
+	sudo pacman -S --needed zsh
 
 zsh: /usr/bin/zsh
 
@@ -129,13 +129,13 @@ arch-update:
 	yay -S -a --norebuild --noconfirm gnome-shell-extension-arch-update
 
 fira-code:
-	sudo pacman -S otf-fira-code
+	sudo pacman -S --needed otf-fira-code
 
 ag:
-	sudo pacman -S --noconfirm the_silver_searcher
+	sudo pacman -S --needed --noconfirm the_silver_searcher
 
 docker: /etc/docker/daemon.json
-	sudo pacman -S --noconfirm docker
+	sudo pacman -S --needed --noconfirm docker
 	sudo systemctl enable docker
 	sudo systemctl start docker
 	sudo gpasswd -a duke docker
@@ -146,5 +146,8 @@ docker: /etc/docker/daemon.json
 docker-compose: /usr/local/bin/docker-compose
 
 /usr/local/bin/docker-compose:
-	sudo curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-  chmod +x /usr/local/bin/docker-compose
+	sudo curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose && chmod +x /usr/local/bin/docker-compose
+
+apps:
+	sudo pacman -S --needed --noconfirm firefox-developer-edition
+	sudo pacman -S --needed --noconfirm telegram-desktop

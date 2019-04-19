@@ -19,7 +19,6 @@ alias lsg='ll | grep'
 
 alias gar="killall -HUP -u \"$USER\" zsh"  #global alias reload
 
-alias vim="nvim"
 alias :q='exit'
 
 alias ve='vim ~/.vimrc'
