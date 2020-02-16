@@ -31,12 +31,69 @@ This command will download, install, link, all dependencies, files, and configur
 
 This scrippt will install the packages zsh and zsh-syntax-highlighting.
 
-To install just the zsh, run:
+To install just the zsh configuration, run:
+
+```
+$ ansible-playbook playbook.yml --tags zsh-config
+```
+
+To install just the zsh (and the zsh configuration), run:
 
 ```
 $ ansible-playbook playbook.yml --tags zsh --ask-become-pass
 ```
 
+### Before scripts
+
+If you need load zsh files before all zsh setup, put the script in `$HOME/.zsh.before`, the filename should end with `.zsh`
+
+### Path
+
+By default the follow paths is in `$PATH`:
+
+- /usr/bin
+- /usr/local/{bin,sbin}
+- $HOME/.bin
+- $HOME/bin
+
+### Aliases
+
+[see roles/zsh/files/aliases.zsh](roles/zsh/files/aliases.zsh)
+
+### Ansible
+
+Set the `ANSIBLE_VAULT_PASSWORD_FILE` to `~/.ansible/vault_pass`
+
+### Colors
+
+Set the `GREP_COLOR` to Yellow
+
+### Git
+
+Define `rmb` command, to remove merged branches
+
+### Key Bindings
+
+- Use vi key bindings
+- Set Ctrl-r to search backward incrementally for a specified string. The string may begin with ^ to anchor the search to the beginning of the line.
+- Set Ctrl-a to beginning of line
+- Set Ctrl-e to end of line
+
+### prompt
+
+Load `promptinit` and with `~/.zsh.prompt` as `fpath`. With that you can put your prompt in `~/.zsh.prompt` directory
+
+### rm
+
+Override rm -i alias which makes rm prompt for every action
+
+### zmv
+
+Use zmv
+
+### zsh-aliases
+
+Set global aliases to zsh, [see roles/zsh/files/zsh-aliases.zsh](roles/zsh/files/zsh-aliases.zsh)
 
 ## Emacs
 

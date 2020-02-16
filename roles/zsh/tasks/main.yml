@@ -11,17 +11,45 @@
 - name: 'zsh : create directories'
   tags:
     - zsh
-    - asdf
-    - languages
-    - elixir
-    - ruby
-    - nodejs
-    - golanf
-    - erlang
+    - zsh-config
   file:
     path: "{{ item }}"
     state: directory
   with_items:
+    - ~/.zsh
     - ~/.zsh.before
     - ~/.zsh.after
     - ~/.zsh.prompts
+
+- name: 'zsh : create .zshrc'
+  tags:
+    - zsh
+    - zsh-config
+  copy:
+    content: "for config_file ($HOME/.zsh/*.zsh) source $config_file"
+    dest: ~/.zshrc
+
+- name: 'zsh : link configuration'
+  tags:
+    - zsh
+    - zsh-config
+  file:
+    src: "~/.dotfiles/roles/zsh/files/{{ item }}.zsh"
+    dest: "~/.zsh/{{ item }}.zsh"
+    state: link
+  with_items:
+    - 0000_before
+    - 0_path
+    - aliases
+    - ansible
+    - colors
+    - git
+    - key-bindings
+    - prompt
+    - rm
+    - rprompt
+    - theme
+    - vi-mode
+    - zmv
+    - zsh-aliases
+    - rprompt
