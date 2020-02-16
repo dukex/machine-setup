@@ -1,0 +1,131 @@
+---
+- hosts: "127.0.0.1"
+  connection: local
+
+  tasks:
+    - name: 'basic dependencies'
+      tags:
+        - initial
+        - dependencies
+      become: yes
+      package:
+        name:
+          - wget
+          - emacs
+        state: latest
+
+
+    - name: 'emacs : install spacemacs'
+      tags:
+        - emacs
+        - editor
+      git:
+        repo: https://github.com/syl20bnr/spacemacs
+        dest: ~/.emacs.d
+
+
+    - name: 'zsh : create after directory'
+      tags:
+        - zsh
+        - asdf
+        - languages
+        - elixir
+        - ruby
+        - nodejs
+        - golanf
+        - erlang
+      file:
+        dest: ~/.zsh.after
+        state: directory
+
+
+    - name: 'asdf : install asdf'
+      tags:
+        - asdf
+        - languages
+        - elixir
+        - ruby
+        - nodejs
+        - golanf
+        - erlang
+      git:
+        repo: https://github.com/asdf-vm/asdf.git
+        dest: ~/.asdf
+        version: v0.7.6
+        update: no
+
+    - name: 'asdf : setup asdf'
+      tags:
+        - asdf
+        - languages
+        - elixir
+        - ruby
+        - nodejs
+        - golanf
+        - erlang
+      file:
+        src: ~/.dotfiles/config/asdf.zsh
+        dest: ~/.zsh.after/asdf.zsh
+        state: link
+
+    - shell: asdf list
+      register: asdf_list
+      tags:
+        - asdf
+        - languages
+        - elixir
+        - ruby
+        - nodejs
+        - golanf
+        - erlang
+    - debug: var=asdf_list
+      tags:
+        - asdf
+        - languages
+        - elixir
+        - ruby
+        - nodejs
+        - golanf
+        - erlang
+    - name: 'asdf : elixir'
+      tags:
+        - asdf
+        - languages
+        - elixir
+      shell: asdf plugin-add elixir https://github.com/asdf-vm/asdf-elixir.git
+      when: asdf_list.stdout.find('elixir') == -1
+
+    - name: 'asdf : ruby'
+      tags:
+        - asdf
+        - languages
+        - ruby
+      shell: asdf plugin-add ruby https://github.com/asdf-vm/asdf-ruby.git
+      when: asdf_list.stdout.find('ruby') == -1
+
+    - name: 'asdf : nodejs'
+      tags:
+        - asdf
+        - languages
+        - nodejs
+      shell: asdf plugin-add nodejs https://github.com/asdf-vm/asdf-nodejs.git
+      when: asdf_list.stdout.find('nodejs') == -1
+
+
+    - name: 'asdf : erlang'
+      tags:
+        - asdf
+        - languages
+        - erlang
+      shell: asdf plugin-add erlang https://github.com/asdf-vm/asdf-erlang.git
+      when: asdf_list.stdout.find('erlang') == -1
+
+    - name: 'asdf : golang'
+      tags:
+        - asdf
+        - languages
+        - golang
+      shell: asdf plugin-add golang https://github.com/kennyp/asdf-golang.git
+      when: asdf_list.stdout.find('golang') == -1
+
+
