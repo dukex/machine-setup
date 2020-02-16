@@ -49,9 +49,8 @@
     - key-bindings
     - prompt
     - rm
-    - rprompt
     - theme
     - vi-mode
     - zmv
     - zsh-aliases
-    - rprompt
+    - zz_rprompt
