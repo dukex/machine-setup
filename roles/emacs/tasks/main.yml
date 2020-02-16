@@ -1,0 +1,15 @@
+- name: 'emacs : install'
+  tags:
+    - emacs
+  become: yes
+  package:
+    name:
+      - emacs
+    state: latest
+
+- name: 'emacs : install spacemacs'
+  tags:
+    - emacs
+  git:
+    repo: https://github.com/syl20bnr/spacemacs
+    dest: ~/.emacs.d

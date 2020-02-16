@@ -1,0 +1,23 @@
+- name: 'git : link global gitignore'
+  tags:
+    - git
+  file:
+    src: ~/.dotfiles/roles/git/files/gitignore
+    dest: ~/.gitignore
+    state: link
+
+- name: 'git : link global gitconfig'
+  tags:
+    - git
+  file:
+    src: ~/.dotfiles/roles/git/files/gitconfig
+    dest: ~/.gitconfig
+    state: link
+
+- name: 'git : create user gitconfig'
+  tags:
+    - git
+  copy:
+    content: ""
+    dest: ~/.gitconfig.user
+    force: no

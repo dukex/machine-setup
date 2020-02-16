@@ -1,0 +1,27 @@
+- name: 'zsh : install'
+  tags:
+    - zsh
+  become: yes
+  package:
+    name:
+      - zsh
+      - zsh-syntax-highlighting
+    state: latest
+
+- name: 'zsh : create directories'
+  tags:
+    - zsh
+    - asdf
+    - languages
+    - elixir
+    - ruby
+    - nodejs
+    - golanf
+    - erlang
+  file:
+    path: "{{ item }}"
+    state: directory
+  with_items:
+    - ~/.zsh.before
+    - ~/.zsh.after
+    - ~/.zsh.prompts

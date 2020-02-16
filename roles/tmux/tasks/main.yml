@@ -1,0 +1,16 @@
+- name: 'tmux : install'
+  tags:
+    - tmux
+  become: yes
+  package:
+    name:
+      - tmux
+    state: latest
+
+- name: 'tmux : install tpm'
+  tags:
+    - tmux
+    - tpm
+  git:
+    repo: https://github.com/tmux-plugins/tpm
+    dest: ~/.tmux/plugins/tpm
