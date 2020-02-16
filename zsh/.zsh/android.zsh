@@ -1,2 +1,5 @@
-export ANDROID_HOME=/opt/android-sdk
-export PATH="/opt/android-sdk/platforms:/opt/android-sdk/platform-tools:$PATH"
+export ANDROID_HOME=$HOME/Android/Sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools

@@ -171,3 +171,5 @@ alias br="bin/rails"
 alias brk="bin/rake"
 alias brc="br c"
 alias brs="br s"
+
+alias be="bundle exec"

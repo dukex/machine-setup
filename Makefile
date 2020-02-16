@@ -151,9 +151,12 @@ docker-compose: /usr/local/bin/docker-compose
 apps:
 	sudo pacman -S --needed --noconfirm firefox-developer-edition
 	sudo pacman -S --needed --noconfirm telegram-desktop
-	sudo pacman -S --needed --noconfirm flatpak && flatpak install flathub com.frac_tion.teleport
+	sudo pacman -S --needed --noconfirm flatpak && flatpak install flathub com.slack.Slack
+	sudo pacman -S --needed --noconfirm htop
+	sudo pacman -S --needed --noconfirm ansible
 	yay -S -a --norebuild --noconfirm --needed spotify
 	yay -S -a --norebuild --noconfirm --needed gcsf-git
+	yay -S -a --norebuild --nocorfirm --needed slack
 	gcsf login $(USER)
 	mkdir -p ~/drive
 	sudo sed -i 's/#user_allow_other/user_allow_other/g' /etc/fuse.conf

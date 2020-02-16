@@ -109,6 +109,7 @@
 	autocrlf = false
 	editor = emacs -nw
 	excludesfile = ~/.gitignore
+	mergeoptions = --no-edit
 [advice]
 	statusHints = false
 [diff]
