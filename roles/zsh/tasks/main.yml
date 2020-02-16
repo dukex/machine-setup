@@ -20,6 +20,8 @@
     - ~/.zsh.before
     - ~/.zsh.after
     - ~/.zsh.prompts
+    - ~/.bin
+    - ~/bin
 
 - name: 'zsh : create .zshrc'
   tags:

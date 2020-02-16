@@ -13,3 +13,22 @@
   git:
     repo: https://github.com/syl20bnr/spacemacs
     dest: ~/.emacs.d
+
+- name: 'emacs : install em scripts'
+  tags:
+    - emacs
+    - em
+  file:
+    src: ~/.dotfiles/roles/emacs/files/em
+    dest: ~/.bin/em
+    state: link
+
+
+- name: 'emacs : add .spacemacs'
+  tags:
+    - emacs
+    - emacs-config
+  file:
+    src: ~/.dotfiles/roles/emacs/files/spacemacs
+    dest: ~/.spacemacs
+    state: link
