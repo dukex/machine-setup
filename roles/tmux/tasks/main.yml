@@ -14,3 +14,12 @@
   git:
     repo: https://github.com/tmux-plugins/tpm
     dest: ~/.tmux/plugins/tpm
+
+- name: 'tmux : configuration'
+  tags:
+    - tmux
+    - tmux-config
+  file:
+    src: ~/.dotfiles/roles/tmux/files/tmux.conf
+    dest: ~/.tmux.conf
+    state: link
