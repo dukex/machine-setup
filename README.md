@@ -26,10 +26,9 @@ $ ansible-playbook playbook.yml --ask-become-pass
 This command will download, install, link, all dependencies, files, and configuration
 
 
-
 ## ZSH
 
-This scrippt will install the packages zsh and zsh-syntax-highlighting.
+This scrippt will install the packages zsh, zsh-syntax-highlighting, zsh-history-substring-search, zsh-completions, zsh-autosuggestions, zsh-autopair and zsh-extract via antigen.
 
 To install just the zsh configuration, run:
 

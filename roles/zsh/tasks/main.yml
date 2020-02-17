@@ -5,13 +5,13 @@
   package:
     name:
       - zsh
-      - zsh-syntax-highlighting
     state: latest
 
 - name: 'zsh : create directories'
   tags:
     - zsh
     - zsh-config
+    - antigen
   file:
     path: "{{ item }}"
     state: directory
@@ -22,6 +22,16 @@
     - ~/.zsh.prompts
     - ~/.bin
     - ~/bin
+    - ~/.antigen
+
+- name: 'zsh : install antigen'
+  tags:
+    - zsh
+    - zsh-config
+    - antigen
+  get_url:
+    url: https://git.io/antigen
+    dest: ~/.antigen/antigen.zsh
 
 - name: 'zsh : create .zshrc'
   tags:
@@ -42,10 +52,12 @@
   with_items:
     - 0000_before
     - 0_path
+    - antigen
     - aliases
     - ansible
     - colors
     - git
+    - history
     - key-bindings
     - prompt
     - rm
