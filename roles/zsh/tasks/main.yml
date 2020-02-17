@@ -58,11 +58,12 @@
     - colors
     - git
     - history
-    - key-bindings
+    - key_bindings
     - prompt
     - rm
     - theme
-    - vi-mode
+    - vi_mode
     - zmv
-    - zsh-aliases
+    - zsh_aliases
     - zz_rprompt
+    - zzzz_after

@@ -23,7 +23,7 @@
     - golanf
     - erlang
   file:
-    src: ~/.dotfiles/config/asdf.zsh
+    src: ~/.dotfiles/roles/asdf/files/asdf.zsh
     dest: ~/.zsh.after/asdf.zsh
     state: link
 
