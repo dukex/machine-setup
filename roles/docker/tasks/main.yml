@@ -45,7 +45,7 @@
     filename: 'docker'
   when: ansible_facts.distribution == 'Debian'
 
-- name: 'docker : install packages'
+- name: 'docker : install packages (debian)'
   tags:
     - docker
   become: yes
@@ -56,6 +56,18 @@
       - containerd.io
     state: present
     update_cache: yes
+  when: ansible_facts.distribution == 'Debian'
+
+- name: 'docker : install dependencies (arch)'
+  tags:
+    - docker
+  become: yes
+  package:
+    name:
+      - docker
+    state: present
+    update_cache: yes
+  when: ansible_facts.distribution == 'Archlinux'
 
 - name: 'docker : create group'
   tags:

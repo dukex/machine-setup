@@ -16,4 +16,4 @@
     name: the_silver_searcher
     state: present
     update_cache: yes
-  when: ansible_facts.distribution == 'Fedora' or ansible_facts.distribution == 'Arch'
+  when: ansible_facts.distribution == 'Fedora' or ansible_facts.distribution == 'Archlinux'
