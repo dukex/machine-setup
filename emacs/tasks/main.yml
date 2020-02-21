@@ -19,9 +19,10 @@
     - emacs
     - em
   file:
-    src: ~/.dotfiles/roles/emacs/files/em
+    src: ~/.dotfiles/emacs/files/em
     dest: ~/.bin/em
     state: link
+    force: yes
 
 
 - name: 'emacs : add .spacemacs'
@@ -29,6 +30,7 @@
     - emacs
     - emacs-config
   file:
-    src: ~/.dotfiles/roles/emacs/files/spacemacs
+    src: ~/.dotfiles/emacs/files/spacemacs
     dest: ~/.spacemacs
     state: link
+    force: yes

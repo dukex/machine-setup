@@ -2,7 +2,7 @@
   tags:
     - git
   file:
-    src: ~/.dotfiles/roles/git/files/gitignore
+    src: ~/.dotfiles/git/files/gitignore
     dest: ~/.gitignore
     state: link
 
@@ -10,7 +10,7 @@
   tags:
     - git
   file:
-    src: ~/.dotfiles/roles/git/files/gitconfig
+    src: ~/.dotfiles/git/files/gitconfig
     dest: ~/.gitconfig
     state: link
 

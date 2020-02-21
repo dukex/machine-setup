@@ -20,6 +20,6 @@
     - tmux
     - tmux-config
   file:
-    src: ~/.dotfiles/roles/tmux/files/tmux.conf
+    src: ~/.dotfiles/tmux/files/tmux.conf
     dest: ~/.tmux.conf
     state: link

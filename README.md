@@ -57,7 +57,7 @@ By default the follow paths is in `$PATH`:
 
 ### Aliases
 
-[see roles/zsh/files/aliases.zsh](roles/zsh/files/aliases.zsh)
+[see zsh/files/aliases.zsh](zsh/files/aliases.zsh)
 
 ### Ansible
 
@@ -92,7 +92,7 @@ Use zmv
 
 ### zsh-aliases
 
-Set global aliases to zsh, [see roles/zsh/files/zsh-aliases.zsh](roles/zsh/files/zsh-aliases.zsh)
+Set global aliases to zsh, [see zsh/files/zsh-aliases.zsh](zsh/files/zsh-aliases.zsh)
 
 ## Emacs
 
@@ -106,7 +106,7 @@ $ ansible-playbook playbook.yml --tags emacs
 
 ## Git
 
-This dotfile link a gitconfig and a gitignore to the home directory. This files is configured with a global configuration, you can check these files at [gitconfig](roles/git/files/gitconfig) and [gitignore](roles/git/files/gitignore)
+This dotfile link a gitconfig and a gitignore to the home directory. This files is configured with a global configuration, you can check these files at [gitconfig](git/files/gitconfig) and [gitignore](git/files/gitignore)
 
 Please leave the ~/.gitconfig to global configuration, you can put your configurations in ~/.gitconfig.user
 
