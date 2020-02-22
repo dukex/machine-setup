@@ -4,14 +4,14 @@
 
 ### Ansible
 
-First of all, install ansible in your machine, you can follow [ansible installation guide](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html).
+First of all, install ansible in your machine, you can follow [the ansible installation guide](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html).
 
 ### Dotfiles
 
 To download the dotfiles run:
 
 ```
-$ git clone git@github.com:dukex/new-dotfiles.git ~/.dotfiles
+$ git clone git@github.com:dukex/dotfiles.git ~/.dotfiles
 $ cd ~/.dotfiles
 ```
 
@@ -181,7 +181,7 @@ $ ansible-playbook playbook.yml --tags nodejs
 
 ## Docker (community edition)
 
-The docker installation follow the guide in [docs.docker.com/install](https://docs.docker.com/install/), for now just the debian installation is fully supported.
+This script install the docker following the guide at [docs.docker.com/install](https://docs.docker.com/install/), for now just the debian installation is fully supported.
 
 To install just the docker, run:
 
@@ -208,3 +208,39 @@ To install just the The Silver Searcher, run:
 ```
 $ ansible-playbook playbook.yml --tags the-silver-searcher --ask-become-pass
 ```
+
+## Firefox Developer Edition
+
+
+To install just the firefox, run:
+
+```
+$ ansible-playbook playbook.yml --tags firefox --ask-become-pass
+```
+
+**firefox aliases**
+
+```
+$ ff [w|p]
+
+Usage: ff [profile alias]
+Open the firefox in a profile.
+
+The current profile alias can be:
+
+  w          work profile
+  p          personal profile
+```
+
+## Enpass
+
+[TODO]
+
+## Tmux
+
+[TODO]
+```
+
+## yay
+
+[TODO]

@@ -1,0 +1,10 @@
+#!/bin/bash
+
+declare -A profiles
+
+profiles=(
+  ["p"]="personal"
+  ["w"]="work"
+)
+
+/usr/lib/firefox-developer-edition/firefox -P "${profiles[$1]}" 2> /dev/null &

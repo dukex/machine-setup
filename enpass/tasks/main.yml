@@ -1,0 +1,29 @@
+- name: 'enpass : check pacman (arch)'
+  tags:
+    - enpass
+  shell: pacman -Q enpass-bin
+  register: enpass_install
+  when: ansible_facts.distribution == 'Archlinux'
+
+- name: 'enpass : download package (arch)'
+  tags:
+    - enpass
+  get_url:
+    url: https://aur.archlinux.org/cgit/aur.git/snapshot/enpass-bin.tar.gz
+    dest: /tmp
+  when: ansible_facts.distribution == 'Archlinux' and enpass_install.stdout.find('enpass') < 0
+
+- name: 'enpass : unpack the package (arch)'
+  tags:
+    - enpass
+  unarchive:
+    src: /tmp/enpass-bin.tar.gz
+    dest: /tmp/
+    copy: no
+  when: ansible_facts.distribution == 'Archlinux' and enpass_install.stdout.find('enpass') < 0
+
+- name: 'enpass : build and install (arch)'
+  tags:
+    - enpass
+  shell: cd /tmp/enpass-bin && makepkg -s -i --noconfirm
+  when: ansible_facts.distribution == 'Archlinux' and enpass_install.stdout.find('enpass') < 0

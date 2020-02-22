@@ -1,0 +1,32 @@
+- name: 'yay : check pacman (arch)'
+  tags:
+    - yay
+  shell: pacman -Q yay
+  changed_when: false
+  check_mode: false
+  failed_when: false
+  register: yay_install
+  when: ansible_facts.distribution == 'Archlinux'
+
+- name: 'yay : download package (arch)'
+  tags:
+    - yay
+  get_url:
+    url: https://aur.archlinux.org/cgit/aur.git/snapshot/yay.tar.gz
+    dest: /tmp
+  when: ansible_facts.distribution == 'Archlinux' and yay_install.stdout.find('yay') < 0
+
+- name: 'yay : unpack the package (arch)'
+  tags:
+    - yay
+  unarchive:
+    src: /tmp/yay.tar.gz
+    dest: /tmp/
+    copy: no
+  when: ansible_facts.distribution == 'Archlinux' and yay_install.stdout.find('yay') < 0
+
+- name: 'yay : build and install (arch)'
+  tags:
+    - yay
+  shell: cd /tmp/yay && makepkg -s -i --noconfirm
+  when: ansible_facts.distribution == 'Archlinux' and yay_install.stdout.find('yay') < 0
