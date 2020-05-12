@@ -4,16 +4,8 @@
   become: yes
   package:
     name:
-      - firefox-developer-edition
+      - firefox
     state: present
     update_cache: yes
   when: ansible_facts.distribution == 'Archlinux'
 
-- name: 'firefox : install em scripts'
-  tags:
-    - firefox
-  file:
-    src: ~/.dotfiles/firefox/files/ff
-    dest: ~/.bin/ff
-    state: link
-    force: yes

@@ -200,27 +200,12 @@ To install just the The Silver Searcher, run:
 $ ansible-playbook playbook.yml --tags the-silver-searcher --ask-become-pass
 ```
 
-## Firefox Developer Edition
-
+## Firefox
 
 To install just the firefox, run:
 
 ```
 $ ansible-playbook playbook.yml --tags firefox --ask-become-pass
-```
-
-**firefox aliases**
-
-```
-$ ff [w|p]
-
-Usage: ff [profile alias]
-Open the firefox in a profile.
-
-The current profile alias can be:
-
-  w          work profile
-  p          personal profile
 ```
 
 ## Enpass
