@@ -94,15 +94,6 @@ Use zmv
 
 Set global aliases to zsh, [see zsh/files/zsh-aliases.zsh](zsh/files/zsh-aliases.zsh)
 
-## Emacs
-
-This dotfile install and setup the spacemacs, the best emacs configuration to vim programmers. The spacemacs documentation is a good place to start, go to [www.spacemacs.org](https://www.spacemacs.org) if you want know more.
-
-To install just the emacs, run:
-
-```
-$ ansible-playbook playbook.yml --tags emacs
-```
 
 ## Git
 

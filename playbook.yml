@@ -2,13 +2,12 @@
 - hosts: "127.0.0.1"
   connection: local
   roles:
-    - zsh
-    - emacs
-    - git
-    - tmux
     - asdf
     - docker
-    - the_silver_searcher
-    - firefox
     - enpass
+    - firefox
+    - git
+    - the_silver_searcher
+    - tmux
     - yay
+    - zsh
