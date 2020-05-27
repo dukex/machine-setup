@@ -95,6 +95,18 @@ Use zmv
 Set global aliases to zsh, [see zsh/files/zsh-aliases.zsh](zsh/files/zsh-aliases.zsh)
 
 
+
+## Visual Code Insiders
+
+This dotfile install and setup the visual code insiders. The Insiders has the most recent code pushes and may lead to the occasional broken build.
+
+To install just the visual code insiders, run:
+
+```
+$ ansible-playbook playbook.yml --tags visual_code
+```
+
+
 ## Git
 
 This dotfile link a gitconfig and a gitignore to the home directory. This files is configured with a global configuration, you can check these files at [gitconfig](git/files/gitconfig) and [gitignore](git/files/gitignore)
