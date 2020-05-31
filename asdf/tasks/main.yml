@@ -1,4 +1,4 @@
-- name: 'asdf : install asdf'
+- name: "asdf : install asdf"
   tags:
     - asdf
     - languages
@@ -12,8 +12,9 @@
     dest: ~/.asdf
     version: v0.7.6
     update: no
+  when: is_linux
 
-- name: 'asdf : setup asdf'
+- name: "asdf : setup asdf"
   tags:
     - asdf
     - languages
@@ -26,10 +27,9 @@
     src: ~/.dotfiles/asdf/files/asdf.zsh
     dest: ~/.zsh.after/asdf.zsh
     state: link
+  when: is_linux
 
-- name: 'asdf : fetch installed asdf plugins'
-  shell: asdf list
-  register: asdf_list
+- name: "asdf : fetch installed asdf plugins"
   tags:
     - asdf
     - languages
@@ -38,43 +38,56 @@
     - nodejs
     - golanf
     - erlang
+  shell: ~/.asdf/bin/asdf list
+  register: asdf_list
+  when: is_linux
 
-- name: 'asdf : elixir'
+- name: "asdf : elixir"
   tags:
     - asdf
     - languages
     - elixir
-  shell: asdf plugin-add elixir https://github.com/asdf-vm/asdf-elixir.git
-  when: asdf_list.stdout.find('elixir') == -1
+  shell: ~/.asdf/bin/asdf plugin-add elixir https://github.com/asdf-vm/asdf-elixir.git
+  when:
+    - is_linux
+    - asdf_list.stdout is defined and asdf_list.stdout.find('elixir') == -1
 
-- name: 'asdf : ruby'
+- name: "asdf : ruby"
   tags:
     - asdf
     - languages
     - ruby
-  shell: asdf plugin-add ruby https://github.com/asdf-vm/asdf-ruby.git
-  when: asdf_list.stdout.find('ruby') == -1
+  shell: ~/.asdf/bin/asdf plugin-add ruby https://github.com/asdf-vm/asdf-ruby.git
+  when:
+    - is_linux
+    - asdf_list.stdout is defined and asdf_list.stdout.find('ruby') == -1
 
-- name: 'asdf : nodejs'
+- name: "asdf : nodejs"
   tags:
     - asdf
     - languages
     - nodejs
-  shell: asdf plugin-add nodejs https://github.com/asdf-vm/asdf-nodejs.git
-  when: asdf_list.stdout.find('nodejs') == -1
+  shell: ~/.asdf/bin/asdf plugin-add nodejs https://github.com/asdf-vm/asdf-nodejs.git
+  when:
+    - is_linux
+    - asdf_list.stdout is defined and asdf_list.stdout.find('nodejs') == -1
 
-- name: 'asdf : erlang'
+- name: "asdf : erlang"
   tags:
     - asdf
     - languages
     - erlang
-  shell: asdf plugin-add erlang https://github.com/asdf-vm/asdf-erlang.git
-  when: asdf_list.stdout.find('erlang') == -1
+  shell: ~/.asdf/bin/asdf plugin-add erlang https://github.com/asdf-vm/asdf-erlang.git
+  when:
+    - is_linux
+    - asdf_list.stdout is defined and asdf_list.stdout.find('erlang') == -1
 
-- name: 'asdf : golang'
+- name: "asdf : golang"
   tags:
     - asdf
     - languages
     - golang
-  shell: asdf plugin-add golang https://github.com/kennyp/asdf-golang.git
-  when: asdf_list.stdout.find('golang') == -1
+  shell: ~/.asdf/bin/asdf plugin-add golang https://github.com/kennyp/asdf-golang.git
+  when:
+    - is_linux
+    - asdf_list.stdout is defined and asdf_list.stdout.find('golang') == -1

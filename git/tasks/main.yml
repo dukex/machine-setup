@@ -1,23 +1,26 @@
-- name: 'git : link global gitignore'
+- name: "git : link global gitignore"
   tags:
     - git
   file:
     src: ~/.dotfiles/git/files/gitignore
     dest: ~/.gitignore
     state: link
+  when: is_linux
 
-- name: 'git : link global gitconfig'
+- name: "git : link global gitconfig"
   tags:
     - git
   file:
     src: ~/.dotfiles/git/files/gitconfig
     dest: ~/.gitconfig
     state: link
+  when: is_linux
 
-- name: 'git : create user gitconfig'
+- name: "git : create user gitconfig"
   tags:
     - git
   copy:
     content: ""
     dest: ~/.gitconfig.user
     force: no
+  when: is_linux

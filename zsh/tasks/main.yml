@@ -1,4 +1,4 @@
-- name: 'zsh : install'
+- name: "zsh : install"
   tags:
     - zsh
   become: yes
@@ -6,8 +6,9 @@
     name:
       - zsh
     state: latest
+  when: is_linux
 
-- name: 'zsh : create directories'
+- name: "zsh : create directories"
   tags:
     - zsh
     - zsh-config
@@ -23,8 +24,9 @@
     - ~/.bin
     - ~/bin
     - ~/.antigen
+  when: is_linux
 
-- name: 'zsh : install antigen'
+- name: "zsh : install antigen"
   tags:
     - zsh
     - zsh-config
@@ -32,16 +34,18 @@
   get_url:
     url: https://git.io/antigen
     dest: ~/.antigen/antigen.zsh
+  when: is_linux
 
-- name: 'zsh : create .zshrc'
+- name: "zsh : create .zshrc"
   tags:
     - zsh
     - zsh-config
   copy:
     content: "for config_file ($HOME/.zsh/*.zsh) source $config_file"
     dest: ~/.zshrc
+  when: is_linux
 
-- name: 'zsh : link configuration'
+- name: "zsh : link configuration"
   tags:
     - zsh
     - zsh-config
@@ -68,3 +72,4 @@
     - zsh_aliases
     - zz_rprompt
     - zzzz_after
+  when: is_linux

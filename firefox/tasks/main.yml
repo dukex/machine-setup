@@ -1,4 +1,4 @@
-- name: 'firefox : install package (arch)'
+- name: "firefox : install package (arch)"
   tags:
     - firefox
   become: yes
@@ -7,5 +7,12 @@
       - firefox
     state: present
     update_cache: yes
-  when: ansible_facts.distribution == 'Archlinux'
+  when: is_arch
 
+- name: "firefox : install package (windows)"
+  tags:
+    - firefox
+  win_package:
+    path: https://download.mozilla.org/?product=firefox-stub&os=win&lang=pt-BR
+    product_id: "Mozilla Firefox"
+  when: is_windows

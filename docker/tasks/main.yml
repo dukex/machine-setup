@@ -1,4 +1,4 @@
-- name: 'docker : remove old packages (debian)'
+- name: "docker : remove old packages (debian)"
   tags:
     - docker
   become: yes
@@ -10,9 +10,9 @@
       - containerd
       - runc
     state: absent
-  when: ansible_facts.distribution == 'Debian'
+  when: is_debian and not is_wsl
 
-- name: 'docker : install dependencies (debian)'
+- name: "docker : install dependencies (debian)"
   tags:
     - docker
   become: yes
@@ -25,27 +25,27 @@
       - software-properties-common
     state: present
     update_cache: yes
-  when: ansible_facts.distribution == 'Debian'
+  when: is_debian and not is_wsl
 
-- name: 'docker : add apt key (debian)'
+- name: "docker : add apt key (debian)"
   tags:
     - docker
   become: yes
   apt_key:
     url: https://download.docker.com/linux/debian/gpg
     state: present
-  when: ansible_facts.distribution == 'Debian'
+  when: is_debian and not is_wsl
 
-- name: 'docker : add repository (debian)'
+- name: "docker : add repository (debian)"
   tags:
     - docker
   become: yes
   apt_repository:
     repo: deb [arch={{ ansible_facts.architecture }}] https://download.docker.com/linux/debian {{ ansible_facts.distribution_release }} stable
-    filename: 'docker'
-  when: ansible_facts.distribution == 'Debian'
+    filename: "docker"
+  when: is_debian and not is_wsl
 
-- name: 'docker : install packages (debian)'
+- name: "docker : install packages (debian)"
   tags:
     - docker
   become: yes
@@ -56,9 +56,9 @@
       - containerd.io
     state: present
     update_cache: yes
-  when: ansible_facts.distribution == 'Debian'
+  when: is_debian and not is_wsl
 
-- name: 'docker : install dependencies (arch)'
+- name: "docker : install dependencies (arch)"
   tags:
     - docker
   become: yes
@@ -67,26 +67,28 @@
       - docker
     state: present
     update_cache: yes
-  when: ansible_facts.distribution == 'Archlinux'
+  when: is_arch
 
-- name: 'docker : create group'
+- name: "docker : create group"
   tags:
     - docker
   become: yes
   group:
     name: docker
     state: present
+  when: is_linux and not is_wsl
 
-- name: 'docker : add {{ ansible_facts.user_id }} to docker group'
+- name: "docker : add {{ ansible_facts.user_id }} to docker group"
   tags:
     - docker
   become: yes
   user:
-    name: '{{ ansible_facts.user_id }}'
+    name: "{{ ansible_facts.user_id }}"
     groups: docker
     append: yes
+  when: is_linux and not is_wsl
 
-- name: 'docker : enable service'
+- name: "docker : enable service"
   tags:
     - docker
   become: yes
@@ -94,8 +96,9 @@
     name: docker
     state: started
     enabled: yes
+  when: is_linux and not is_wsl
 
-- name: 'docker-compose : download'
+- name: "docker-compose : download"
   tags:
     - docker-compose
     - docker
@@ -103,5 +106,5 @@
   get_url:
     url: https://github.com/docker/compose/releases/download/1.25.3/docker-compose-{{ ansible_facts.system }}-{{ ansible_facts.architecture }}
     dest: /usr/local/bin/docker-compose
-    mode: '0555'
-
+    mode: "0555"
+  when: is_linux and not is_wsl

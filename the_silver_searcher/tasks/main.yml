@@ -1,4 +1,4 @@
-- name: 'the The Silver Searcher : install package (Debian based)'
+- name: "the The Silver Searcher : install package (Debian based)"
   tags:
     - the-silver-searcher
   become: yes
@@ -6,9 +6,10 @@
     name: silversearcher-ag
     state: present
     update_cache: yes
-  when: ansible_facts.distribution == 'Debian' or ansible_facts.distribution == 'Ubuntu'
+  when:
+    - is_debian
 
-- name: 'the The Silver Searcher : install package (Fedora, Arch)'
+- name: "the The Silver Searcher : install package (Fedora, Arch)"
   tags:
     - the-silver-searcher
   become: yes
@@ -16,4 +17,5 @@
     name: the_silver_searcher
     state: present
     update_cache: yes
-  when: ansible_facts.distribution == 'Fedora' or ansible_facts.distribution == 'Archlinux'
+  when:
+    - is_arch

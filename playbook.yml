@@ -1,7 +1,17 @@
 ---
-- hosts: "127.0.0.1"
-  connection: local
+- hosts: "all"
+  pre_tasks:
+    - name: set facts
+      tags:
+        - always
+      set_fact:
+        is_wsl: ansible_facts.env.WSL_DISTRO_NAME == 'Debian'
+        is_debian: ansible_facts.distribution == 'Debian'
+        is_arch: ansible_facts.distribution == 'Archlinux'
+        is_windows: ansible_facts.os_family == 'Windows'
+        is_linux: ansible_facts.os_family != 'Windows'
   roles:
+    - zsh
     - yay
     - asdf
     - docker
@@ -11,4 +21,3 @@
     - visual_code
     - the_silver_searcher
     - tmux
-    - zsh

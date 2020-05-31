@@ -1,4 +1,4 @@
-- name: 'tmux : install'
+- name: "tmux : install"
   tags:
     - tmux
   become: yes
@@ -6,16 +6,18 @@
     name:
       - tmux
     state: latest
+  when: is_linux
 
-- name: 'tmux : install tpm'
+- name: "tmux : install tpm"
   tags:
     - tmux
     - tpm
   git:
     repo: https://github.com/tmux-plugins/tpm
     dest: ~/.tmux/plugins/tpm
+  when: is_linux
 
-- name: 'tmux : configuration'
+- name: "tmux : configuration"
   tags:
     - tmux
     - tmux-config
@@ -23,3 +25,4 @@
     src: ~/.dotfiles/tmux/files/tmux.conf
     dest: ~/.tmux.conf
     state: link
+  when: is_linux
