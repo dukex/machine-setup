@@ -9,8 +9,7 @@ All ansible commands should be executed in Linux.
 
 First of all, install ansible in your machine, you can follow [the ansible installation guide](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html).
 
-Given you're in Windows, read careful the [Setting up a Windows Host](https://docs.ansible.com/ansible/latest/user_guide/windows_setup.html) guide.
-
+Given you're in Windows, read careful the [Setting up a Windows Host](https://docs.ansible.com/ansible/latest/user_guide/windows_setup.html) guide and the [Windows Support](#windows-support) here.
 
 ### Dotfiles
 
@@ -26,7 +25,7 @@ $ cd ~/.dotfiles
 To complete installation run:
 
 ```
-$ ansible-playbook playbook.yml --ask-become-pass
+$ ansible-playbook -i hosts playbook.yml --ask-become-pass
 ```
 
 This command will download, install, link, all dependencies, files, and configuration
@@ -41,13 +40,13 @@ On windows, the zsh will just be installed in the WSL.
 To install just the zsh configuration, run:
 
 ```
-$ ansible-playbook playbook.yml --tags zsh-config
+$ ansible-playbook -i hosts playbook.yml --tags zsh-config
 ```
 
 To install just the zsh (and the zsh configuration), run:
 
 ```
-$ ansible-playbook playbook.yml --tags zsh --ask-become-pass
+$ ansible-playbook -i hosts playbook.yml --tags zsh --ask-become-pass
 ```
 
 #### Before scripts
@@ -110,7 +109,7 @@ This dotfile install and setup the visual code insiders. The Insiders has the mo
 To install just the visual code insiders, run:
 
 ```
-$ ansible-playbook playbook.yml --tags visual_code
+$ ansible-playbook -i hosts playbook.yml --tags visual_code
 ```
 
 
@@ -125,7 +124,7 @@ On windows, the git will just be installed in the WSL.
 To install just the git config, run:
 
 ```
-$ ansible-playbook playbook.yml --tags git
+$ ansible-playbook -i hosts playbook.yml --tags git
 ```
 
 ### Tmux
@@ -137,13 +136,13 @@ On windows, the tmux will just be installed in the WSL.
 To install just the tmux, run:
 
 ```
-$ ansible-playbook playbook.yml --tags tmux --ask-become-pass
+$ ansible-playbook -i hosts playbook.yml --tags tmux --ask-become-pass
 ```
 
 To install just the tpm, run:
 
 ```
-$ ansible-playbook playbook.yml --tags tpm
+$ ansible-playbook -i hosts playbook.yml --tags tpm
 ```
 
 ### Languages support (asdf)
@@ -163,7 +162,7 @@ On windows, the asdf will just be installed in the WSL.
 To install just the languages support, run:
 
 ```
-$ ansible-playbook playbook.yml --tags languages
+$ ansible-playbook -i hosts playbook.yml --tags languages
 ```
 
 You can install a language separated
@@ -171,27 +170,27 @@ You can install a language separated
 
 **Elixir**
 ```
-$ ansible-playbook playbook.yml --tags elixir
+$ ansible-playbook -i hosts playbook.yml --tags elixir
 ```
 
 **Ruby**
 ```
-$ ansible-playbook playbook.yml --tags ruby
+$ ansible-playbook -i hosts playbook.yml --tags ruby
 ```
 
 **Erlang**
 ```
-$ ansible-playbook playbook.yml --tags elixir
+$ ansible-playbook -i hosts playbook.yml --tags elixir
 ```
 
 **Golang**
 ```
-$ ansible-playbook playbook.yml --tags golang
+$ ansible-playbook -i hosts playbook.yml --tags golang
 ```
 
 **Nodejs**
 ```
-$ ansible-playbook playbook.yml --tags nodejs
+$ ansible-playbook -i hosts playbook.yml --tags nodejs
 ```
 
 
@@ -204,7 +203,7 @@ On windows, install Docker Desktop, and enable the WSL integration.
 To install just the docker, run:
 
 ```
-$ ansible-playbook playbook.yml --tags docker --ask-become-pass
+$ ansible-playbook -i hosts playbook.yml --tags docker --ask-become-pass
 ```
 
 The docker tag will install the **docker-compose** too.
@@ -216,7 +215,7 @@ On windows, the docker-compose will just be installed in the WSL.
 To install just the docker-compose, run:
 
 ```
-$ ansible-playbook playbook.yml --tags docker-compose --ask-become-pass
+$ ansible-playbook -i hosts playbook.yml --tags docker-compose --ask-become-pass
 ```
 
 ### The Silver Searcher
@@ -228,7 +227,7 @@ On windows, the the silver searcher will just be installed in the WSL.
 To install just the The Silver Searcher, run:
 
 ```
-$ ansible-playbook playbook.yml --tags the-silver-searcher --ask-become-pass
+$ ansible-playbook -i hosts playbook.yml --tags the-silver-searcher --ask-become-pass
 ```
 
 ### Firefox
@@ -236,7 +235,7 @@ $ ansible-playbook playbook.yml --tags the-silver-searcher --ask-become-pass
 To install just the firefox, run:
 
 ```
-$ ansible-playbook playbook.yml --tags firefox --ask-become-pass
+$ ansible-playbook -i hosts playbook.yml --tags firefox --ask-become-pass
 ```
 
 ### Enpass
@@ -250,3 +249,34 @@ $ ansible-playbook playbook.yml --tags firefox --ask-become-pass
 ### yay
 
 [TODO]
+
+<a id="windows-support"></a>
+## Windows Support
+
+To make windows works, first install `winrm`, the ansible describe better it on [Setting up a Windows Host](https://docs.ansible.com/ansible/latest/user_guide/windows_setup.html) guide.
+
+After, take a look the current `hosts` file, now it's look like:
+
+```
+[local]
+127.0.0.1
+
+[local:vars]
+ansible_connection=local
+```
+
+You should add the follow code after the last line of this file:
+
+```
+[win]
+YOUR-WINDOWS-IP
+
+[win:vars]
+ansible_user=YOUR-WINDOWS-USER
+ansible_password=YOUR-WINDOWS-PASSWORD
+ansible_connection=winrm
+ansible_winrm_server_cert_validation=ignore
+ansible_winrm_transport=basic
+```
+
+Change the `YOUR-WINDOWS-IP`, `YOUR-WINDOWS-USER` and `YOUR-WINDOWS-PASSWORD` to real data.
