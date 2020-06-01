@@ -1,4 +1,4 @@
-# dotfiles
+# Machine Setup
 
 ## Download
 
