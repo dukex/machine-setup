@@ -1,27 +1,15 @@
-# - name: "megafono : setup host megafono.development"
-#   tags:
-#     - megafono
-#   win_lineinfile:
-#     path: C:\Windows\system32\drivers\etc\hosts
-#     line: "127.0.0.1\tmegafono.development"
-#   when: is_windows
-
-- name: "megafono : setup host megafono.development"
+- name: "megafono : setup hosts to megafono.development"
   tags:
     - megafono
   win_lineinfile:
     dest: C:\Windows\system32\drivers\etc\hosts
-    regexp: "127.0.0.1\tmegafono.development"
-    line: "127.0.0.1\tmegafono.development"
-  register: megafono_development
+    regexp: "127.0.0.1\t{{ item }}"
+    line: "127.0.0.1\t{{ item }}"
   when: is_windows
+  with_items:
+    - megafono.development
+    - cockpit.megafono.development
+    - www.megafono.development
+    - id.megafono.development
+    - old.megafono.development
 
-- name: "megafono : setup host megafono.development"
-  tags:
-    - megafono
-  win_lineinfile:
-    dest: C:\Windows\system32\drivers\etc\hosts
-    regexp: "127.0.0.1\tcockpit.megafono.development"
-    line: "127.0.0.1\tcockpit.megafono.development"
-  register: cockpit_megafono_development
-  when: is_windows
