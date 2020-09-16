@@ -13,6 +13,9 @@
   tags:
     - firefox
   win_package:
-    path: https://download.mozilla.org/?product=firefox-stub&os=win&lang=pt-BR
+    path: https://download.mozilla.org/?product=firefox-latest-ssl&os=win64&lang=pt-BR
     product_id: "Mozilla Firefox"
+    name: "Mozilla Firefox"
+    path: https://download.mozilla.org/?product=firefox-latest-ssl&os=win64&lang=pt-BR
+    arguments: /i /q /norestart
   when: is_windows
