@@ -61,6 +61,7 @@
     - aliases
     - ansible
     - colors
+    - completion
     - git
     - history
     - key_bindings
