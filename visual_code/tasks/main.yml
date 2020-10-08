@@ -7,11 +7,3 @@
     state: present
     update_cache: yes
   when: is_arch
-
-- name: "code : install package (windows)"
-  tags:
-    - visual_code
-  win_package:
-    path: http://aka.ms/win32-x64-user-insider
-    product_id: "code"
-  when: is_windows
