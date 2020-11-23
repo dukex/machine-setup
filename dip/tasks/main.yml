@@ -1,0 +1,34 @@
+- name: "dip : install"
+  get_url:
+    url: https://github.com/bibendi/dip/releases/download/v6.1.0/dip-Linux-x86_64
+    dest: /usr/local/bin/dip
+    mode: '0755'
+  when: is_linux
+
+- name: "dip : link global dip.yml"
+  tags:
+    - dip
+  file:
+    src: ~/.dotfiles/dip/files/dip.yml
+    dest: ~/dip.yml
+    state: link
+  when: is_linux
+
+- name: "dip : create directories"
+  tags:
+    - dip
+  file:
+    path: "{{ item }}"
+    state: directory
+  with_items:
+    - ~/.dip
+  when: is_linux
+
+- name: "dip : link global docker-compose"
+  tags:
+    - dip
+  file:
+    src: ~/.dotfiles/dip/files/global-compose.yml
+    dest: ~/.dip/global-compose.yml
+    state: link
+  when: is_linux

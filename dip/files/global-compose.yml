@@ -1,0 +1,60 @@
+version: "2.4"
+
+services:
+  ruby: &ruby
+    command: bash
+    image: ruby:2.7
+    volumes:
+      - ${PWD}:/${PWD}:cached
+      - bundler_data:/usr/local/bundle
+      - history:/usr/local/hist
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@postgres:5432
+      REDIS_URL: redis://redis:6379/
+      HISTFILE: /usr/local/hist/.bash_history
+      LANG: C.UTF-8
+      PROMPT_DIRTRIM: 2
+      PS1: '[\W]\! '
+      BUNDLE_GEMFILE: ${BUNDLE_GEMFILE:-Gemfile}
+      BUNDLE_PATH: /usr/local/bundle
+    working_dir: ${PWD}
+    tmpfs:
+      - /tmp
+  ruby-latest:
+    <<: *ruby
+    image: rubocophq/ruby-snapshot:latest
+    volumes:
+      - ${PWD}:/${PWD}:cached
+      - bundler_data_edge:/usr/local/bundle
+      - history:/usr/local/hist
+  postgres:
+    image: postgres:latest
+    volumes:
+      - history:/usr/local/hist
+      - ./.psqlrc:/root/.psqlrc:ro
+      - postgres:/var/lib/postgresql/data
+    environment:
+      PSQL_HISTFILE: /usr/local/hist/.psql_history
+      POSTGRES_PASSWORD: postgres
+      PGPASSWORD: postgres
+    ports:
+      - 5432
+  redis:
+    image: redis:5-alpine
+    volumes:
+      - redis:/data
+    ports:
+      - 6379
+    healthcheck:
+      test: redis-cli ping
+      interval: 1s
+      timeout: 3s
+      retries: 30
+
+volumes:
+  postgres:
+  redis:
+  bundler_data:
+  bundler_jruby:
+  bundler_data_edge:
+  history:
