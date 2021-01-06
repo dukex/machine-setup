@@ -14,6 +14,8 @@
     - old.megafono.development
     - account.megafono.development
     - 2.megafono.development
+    - 2020.megafono.development
+    - survey.megafono.development
     - megafono.development.br
     - cockpit.megafono.development.br
     - www.megafono.development.br
@@ -21,3 +23,5 @@
     - old.megafono.development.br
     - account.megafono.development.br
     - 2.megafono.development.br
+    - 2020.megafono.development.br
+    - survey.megafono.development.br
