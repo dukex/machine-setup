@@ -301,7 +301,7 @@ You should add the follow code after the last line of this file:
 
 ```
 [win]
-YOUR-WINDOWS-IP
+YOUR-WINDOWS-IP # run cat /etc/resolv.conf | grep nameserver | awk '{print $2; exit;}'
 
 [win:vars]
 ansible_user=YOUR-WINDOWS-USER
