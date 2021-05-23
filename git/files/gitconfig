@@ -142,3 +142,7 @@
 
 [difftool]
 	prompt = false
+[pack]
+	windowMemory = 100m
+	packSizeLimit = 100m
+	threads = 1
