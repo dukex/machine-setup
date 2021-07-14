@@ -5,11 +5,34 @@ All ansible commands should be executed in Linux.
 
 ## Download
 
+### Git 
+
+We will download this repo using git
+
+#### Arch 
+```
+$ pacman -S git openssh
+$ ssh-keygen -t ed25519 -C "emersonalmeidax@gmail.com"
+$ eval "$(ssh-agent -s)"
+$ ssh-add ~/.ssh/id_ed25519
+```
+
+Create the new ssh key in github 
+
 ### Ansible
 
 First of all, install ansible in your machine, you can follow [the ansible installation guide](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html).
 
+#### Arch 
+
+```
+$ pacman -S ansible
+```
+
+#### In WSL 
+
 Given you're in Windows, read careful the [Setting up a Windows Host](https://docs.ansible.com/ansible/latest/user_guide/windows_setup.html) guide and the [Windows Support](#windows-support) here.
+
 
 ### Dotfiles
 
