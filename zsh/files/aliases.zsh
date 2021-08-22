@@ -71,3 +71,8 @@ alias gdmb='git branch --merged | grep -v "\*" | xargs -n 1 git branch -d'
 
 # Common shell functions
 alias less='less -r'
+
+
+# Docker
+alias dc="docker compose"
+alias dcr="docker compose run --rm"
