@@ -9,6 +9,7 @@
   with_items:
     - megafono.development
     - cockpit.megafono.development
+    - content.megafono.development
     - www.megafono.development
     - id.megafono.development
     - old.megafono.development
@@ -17,6 +18,8 @@
     - 2.megafono.development
     - 2020.megafono.development
     - survey.megafono.development
+    - podcast-creator.megafono.development
+    - backoffice.megafono.development
     - megafono.development.br
     - cockpit.megafono.development.br
     - www.megafono.development.br
@@ -27,3 +30,5 @@
     - 2.megafono.development.br
     - 2020.megafono.development.br
     - survey.megafono.development.br
+    - podcast-creator.megafono.development.br
+    - backoffice.megafono.development.br

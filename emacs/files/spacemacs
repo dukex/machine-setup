@@ -33,9 +33,9 @@
      ; programming and markup languages
      emacs-lisp
      html
-     (javascript :variables javascript-fmt-tool 'prettier)
+     ;; (javascript :variables javascript-fmt-tool 'prettier)
+     javascript
      (markdown :variables markdown-live-preview-engine 'vmd)
-     prettier
      sql
      yaml
      react
@@ -64,7 +64,6 @@
                                       tide
                                       rubocopfmt
                                       ameba
-                                      prettier-js
                                       terraform-mode
                                       js2-refactor
                                       xref-js2
@@ -199,9 +198,9 @@
   (company-mode +1))
 
 (defun dotspacemacs/user-config ()
-  (add-hook 'js2-mode-hook 'prettier-js-mode)
+  ;; (add-hook 'js2-mode-hook 'prettier-js-mode)
   (add-hook 'js2-mode-hook 'j2-refactor-mode)
-  (add-hook 'web-mode-hook 'prettier-js-mode)
+  ;; (add-hook 'web-mode-hook 'prettier-js-mode)
   (add-hook 'ruby-mode-hook #'rubocop-mode)
 
   (spacemacs|add-toggle darkroom-mode
