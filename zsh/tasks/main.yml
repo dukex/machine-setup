@@ -62,6 +62,7 @@
     - ansible
     - colors
     - completion
+    - docker
     - git
     - history
     - key_bindings
