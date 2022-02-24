@@ -1,0 +1,8 @@
+source $HOME/.zsh/0000_before.zsh
+source $HOME/.zsh/0_path.zsh
+source $HOME/.zsh/aliases.zsh
+source $HOME/.zsh/history.zsh
+source $HOME/.zsh/antigen.zsh
+
+. /opt/asdf-vm/asdf.sh
+

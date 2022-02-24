@@ -27,11 +27,3 @@
     state: link
   when: is_linux
 
-- name: "tmux : start by default"
-  tags:
-    - tmux
-  file:
-    src: ~/.dotfiles/tmux/files/tmux.zsh
-    dest: $HOME/.zsh.after/tmux-default.zsh
-    state: link
-  when: is_linux

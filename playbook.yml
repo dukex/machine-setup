@@ -11,15 +11,11 @@
         is_windows: ansible_facts.os_family == 'Windows'
         is_linux: ansible_facts.os_family != 'Windows'
   roles:
-    - zsh
     - yay
+    - zsh
     - asdf
     - docker
-    - enpass
-    - firefox
     - git
-    - visual_code
     - the_silver_searcher
     - tmux
     - megafono
-    - emacs

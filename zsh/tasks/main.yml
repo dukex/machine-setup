@@ -18,9 +18,6 @@
     state: directory
   with_items:
     - ~/.zsh
-    - ~/.zsh.before
-    - ~/.zsh.after
-    - ~/.zsh.prompts
     - ~/.bin
     - ~/bin
     - ~/.antigen
@@ -36,13 +33,27 @@
     dest: ~/.antigen/antigen.zsh
   when: is_linux
 
-- name: "zsh : create .zshrc"
+- name: "zsh : install p10k"
+  tags:
+    - zsh 
+    - zsh-config
+    - p10k 
+  yay:
+    name:
+      - zsh-theme-powerlevel10k-git
+    state: latest
+    update_cache: yes
+  when: is_arch
+
+- name: "zsh : link .zshrc"
   tags:
     - zsh
     - zsh-config
-  copy:
-    content: "for config_file ($HOME/.zsh/*.zsh) source $config_file"
-    dest: ~/.zshrc
+  file:
+    src: "~/.dotfiles/zsh/files/zshrc"
+    dest: "~/.zshrc"
+    state: link
+    force: yes
   when: is_linux
 
 - name: "zsh : link configuration"
@@ -57,21 +68,10 @@
   with_items:
     - 0000_before
     - 0_path
-    - antigen
     - aliases
-    - ansible
-    - colors
-    - completion
-    - docker
-    - git
+    - antigen
+    # - completion
     - history
     - key_bindings
-    - prompt
-    - rm
-    - theme
-    - vi_mode
-    - zmv
-    - zsh_aliases
-    - zz_rprompt
-    - zzzz_after
+    # - vi_mode
   when: is_linux

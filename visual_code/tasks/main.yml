@@ -1,9 +1,0 @@
-- name: "code : install package (arch)"
-  tags:
-    - visual_code
-  yay:
-    name:
-      - visual-studio-code-insiders
-    state: present
-    update_cache: yes
-  when: is_arch

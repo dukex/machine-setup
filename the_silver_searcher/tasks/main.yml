@@ -3,7 +3,7 @@
     - the-silver-searcher
   become: yes
   package:
-    name: silversearcher-ag
+    name: ripgrep
     state: present
     update_cache: yes
   when:
@@ -14,7 +14,7 @@
     - the-silver-searcher
   become: yes
   package:
-    name: the_silver_searcher
+    name: ripgrep 
     state: present
     update_cache: yes
   when:

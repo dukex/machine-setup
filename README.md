@@ -1,6 +1,6 @@
 # Machine Setup
 
-This dotfiles is made to be used in **Arch Linux** and in **Windows** via a **Debian** WSL.
+This dotfiles is made to be used in **Arch Linux** and in **Windows** via a WSL.
 All ansible commands should be executed in Linux.
 
 ## Download
@@ -74,7 +74,7 @@ $ ansible-playbook -i hosts playbook.yml --tags zsh --ask-become-pass
 
 #### Before scripts
 
-If you need load zsh files before all zsh setup, put the script in `$HOME/.zsh.before`, the filename should end with `.zsh`
+Will setup the [powershell10k](https://github.com/romkatv/powerlevel10k).
 
 #### Path
 
@@ -84,22 +84,12 @@ By default the follow paths is in `$PATH`:
 - /usr/local/{bin,sbin}
 - $HOME/.bin
 - $HOME/bin
+- $HOME/.local/bin
+- $HOME/.cargo/bin
 
 #### Aliases
 
 [see zsh/files/aliases.zsh](zsh/files/aliases.zsh)
-
-#### Ansible
-
-Set the `ANSIBLE_VAULT_PASSWORD_FILE` to `~/.ansible/vault_pass`
-
-#### Colors
-
-Set the `GREP_COLOR` to Yellow
-
-#### Git
-
-Define `rmb` command, to remove merged branches
 
 #### Key Bindings
 
@@ -107,43 +97,6 @@ Define `rmb` command, to remove merged branches
 - Set Ctrl-r to search backward incrementally for a specified string. The string may begin with ^ to anchor the search to the beginning of the line.
 - Set Ctrl-a to beginning of line
 - Set Ctrl-e to end of line
-
-#### prompt
-
-Load `promptinit` and with `~/.zsh.prompt` as `fpath`. With that you can put your prompt in `~/.zsh.prompt` directory
-
-#### rm
-
-Override rm -i alias which makes rm prompt for every action
-
-#### zmv
-
-Use zmv
-
-#### zsh-aliases
-
-Set global aliases to zsh, [see zsh/files/zsh-aliases.zsh](zsh/files/zsh-aliases.zsh)
-
-## Emacs
-
-This dotfile install and setup the spacemacs, the best emacs configuration to vim programmers. The spacemacs documentation is a good place to start, go to [www.spacemacs.org](https://www.spacemacs.org) if you want know more.
-
-To install just the emacs, run:
-
-```
-$ ansible-playbook playbook.yml --tags emacs
-```
-
-### Visual Code Insiders
-
-This dotfile install and setup the visual code insiders. The Insiders has the most recent code pushes and may lead to the occasional broken build. Currently the Visual Code Insiders has a sync configuration from github or Microsoft Account, because that this dotfile will just install the apo.
-
-To install just the visual code insiders, run:
-
-```
-$ ansible-playbook -i hosts playbook.yml --tags visual_code
-```
-
 
 ### Git
 
@@ -226,53 +179,18 @@ $ ansible-playbook -i hosts playbook.yml --tags nodejs
 ```
 
 
-### Docker (community edition)
 
-This script install the docker following the guide at [docs.docker.com/install](https://docs.docker.com/install/), for now just the debian installation is fully supported.
+### ~~The Silver Searcher~~ ripgrep
 
-On windows, install Docker Desktop, and enable the WSL integration.
+The ripgrep recursively searches directories for a regex pattern while respecting your gitignore.
 
-To install just the docker, run:
-
-```
-$ ansible-playbook -i hosts playbook.yml --tags docker --ask-become-pass
-```
-
-The docker tag will install the **docker-compose** too.
-
-#### Docker Compose
-
-On windows, the docker-compose will just be installed in the WSL.
-
-To install just the docker-compose, run:
-
-```
-$ ansible-playbook -i hosts playbook.yml --tags docker-compose --ask-become-pass
-```
-
-### The Silver Searcher
-
-The "the silver searcher" is descibed as "A code searching tool similar to ack, with a focus on speed."
-
-On windows, the the silver searcher will just be installed in the WSL.
+On windows, the ripgrep will just be installed in the WSL.
 
 To install just the The Silver Searcher, run:
 
 ```
 $ ansible-playbook -i hosts playbook.yml --tags the-silver-searcher --ask-become-pass
 ```
-
-### Firefox
-
-To install just the firefox, run:
-
-```
-$ ansible-playbook -i hosts playbook.yml --tags firefox --ask-become-pass
-```
-
-### Enpass
-
-[TODO]
 
 ### Tmux
 

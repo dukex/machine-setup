@@ -5,4 +5,6 @@ path=(
   $path
   $HOME/.bin
   $HOME/bin
+  $HOME/.local/bin
+  $HOME/.cargo/bin
 )
