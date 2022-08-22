@@ -7,6 +7,7 @@
     - nodejs
     - golanf
     - erlang
+    - rust
   yay:
     name:
       - asdf-vm 
@@ -23,6 +24,7 @@
     - nodejs
     - golanf
     - erlang
+    - rust
   shell: /opt/asdf-vm/bin/asdf list
   register: asdf_list
   when: is_linux
@@ -57,6 +59,16 @@
     - is_linux
     - asdf_list.stdout is defined and asdf_list.stdout.find('nodejs') == -1
 
+- name: "asdf : nodejs install lts"
+  tags:
+    - asdf
+    - languages
+    - nodejs
+  shell: /opt/asdf-vm/bin/asdf install nodejs lts 
+  when:
+    - is_linux
+    - asdf_list.stdout is defined and asdf_list.stdout.find('nodejs') == -1
+
 - name: "asdf : erlang"
   tags:
     - asdf
@@ -66,6 +78,16 @@
   when:
     - is_linux
     - asdf_list.stdout is defined and asdf_list.stdout.find('erlang') == -1
+
+- name: "asdf : rust"
+  tags:
+    - asdf
+    - languages
+    - rust
+  shell: /opt/asdf-vm/bin/asdf plugin-add rust && /opt/asdf-vm/bin/asdf install rust stable && /opt/asdf-vm/bin/asdf global rust stable
+  when:
+    - is_linux
+    - asdf_list.stdout is defined and asdf_list.stdout.find('rust') == -1
 
 - name: "asdf : golang"
   tags:

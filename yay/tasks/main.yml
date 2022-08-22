@@ -2,6 +2,7 @@
   tags:
     - yay
     - visual_code
+    - languages
   shell: pacman -Q yay
   changed_when: false
   check_mode: false
@@ -12,6 +13,7 @@
   tags:
     - yay
     - visual_code
+    - languages
   get_url:
     url: https://aur.archlinux.org/cgit/aur.git/snapshot/yay.tar.gz
     dest: /tmp
@@ -23,6 +25,7 @@
   tags:
     - yay
     - visual_code
+    - languages
   unarchive:
     src: /tmp/yay.tar.gz
     dest: /tmp/
@@ -35,6 +38,7 @@
   tags:
     - yay
     - visual_code
+    - languages
   shell: cd /tmp/yay && makepkg -s -i --noconfirm
   when:
     - is_arch

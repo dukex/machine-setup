@@ -4,5 +4,3 @@ source $HOME/.zsh/aliases.zsh
 source $HOME/.zsh/history.zsh
 source $HOME/.zsh/antigen.zsh
 
-. /opt/asdf-vm/asdf.sh
-

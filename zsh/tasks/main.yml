@@ -18,20 +18,33 @@
     state: directory
   with_items:
     - ~/.zsh
-    - ~/.bin
     - ~/bin
     - ~/.antigen
   when: is_linux
 
-- name: "zsh : install antigen"
+# - name: "zsh : install antigen"
+#   tags:
+#     - zsh
+#     - zsh-config
+#     - antigen
+#   get_url:
+#     url: https://git.io/antigen
+#     dest: ~/.antigen/antigen.zsh
+#   when: is_linux
+
+- name: "zsh : uninstall default p10k"
   tags:
-    - zsh
+    - zsh 
     - zsh-config
-    - antigen
-  get_url:
-    url: https://git.io/antigen
-    dest: ~/.antigen/antigen.zsh
-  when: is_linux
+    - p10k 
+  become: yes
+  package:
+    name:
+      - manjaro-zsh-config
+      - zsh-theme-powerlevel10k
+    state: absent
+    update_cache: yes
+  when: is_arch
 
 - name: "zsh : install p10k"
   tags:
@@ -44,7 +57,7 @@
     state: latest
     update_cache: yes
   when: is_arch
-
+    
 - name: "zsh : link .zshrc"
   tags:
     - zsh
@@ -56,6 +69,18 @@
     force: yes
   when: is_linux
 
+- name: "zsh : link .p10k"
+  tags:
+    - zsh
+    - p10k
+    - zsh-config
+  file:
+    src: "~/.dotfiles/zsh/files/p10k.zsh"
+    dest: "~/.p10k.zsh"
+    state: link
+    force: yes
+  when: is_linux
+    
 - name: "zsh : link configuration"
   tags:
     - zsh
@@ -69,9 +94,6 @@
     - 0000_before
     - 0_path
     - aliases
-    - antigen
-    # - completion
+    #- antigen
     - history
-    - key_bindings
-    # - vi_mode
   when: is_linux
