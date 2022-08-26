@@ -22,15 +22,15 @@
     - ~/.antigen
   when: is_linux
 
-# - name: "zsh : install antigen"
-#   tags:
-#     - zsh
-#     - zsh-config
-#     - antigen
-#   get_url:
-#     url: https://git.io/antigen
-#     dest: ~/.antigen/antigen.zsh
-#   when: is_linux
+- name: "zsh : install antigen"
+  tags:
+    - zsh
+    - zsh-config
+    - antigen
+  get_url:
+    url: https://git.io/antigen
+    dest: ~/.antigen/antigen.zsh
+  when: is_linux
 
 - name: "zsh : uninstall default p10k"
   tags:
@@ -43,7 +43,6 @@
       - manjaro-zsh-config
       - zsh-theme-powerlevel10k
     state: absent
-    update_cache: yes
   when: is_arch
 
 - name: "zsh : install p10k"
@@ -94,6 +93,6 @@
     - 0000_before
     - 0_path
     - aliases
-    #- antigen
+    - antigen
     - history
   when: is_linux

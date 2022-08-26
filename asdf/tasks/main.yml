@@ -67,7 +67,7 @@
   shell: /opt/asdf-vm/bin/asdf install nodejs lts 
   when:
     - is_linux
-    - asdf_list.stdout is defined and asdf_list.stdout.find('nodejs') == -1
+    - asdf_list.stdout is defined and asdf_list.stdout.find('nodejs') != -1
 
 - name: "asdf : erlang"
   tags:
@@ -98,3 +98,17 @@
   when:
     - is_linux
     - asdf_list.stdout is defined and asdf_list.stdout.find('golang') == -1
+
+- name: "asdf : nodejs npmrc"
+  tags:
+    - asdf
+    - languages
+    - nodejs
+  file:
+    src: "~/.dotfiles/asdf/files/npmrc"
+    dest: "~/.npmrc"
+    state: link
+    force: yes
+  when:
+    - is_linux
+    - asdf_list.stdout is defined and asdf_list.stdout.find('nodejs') != -1

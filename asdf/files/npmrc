@@ -1,0 +1,3 @@
+cache=~/code/.npm/cache
+editor=/usr/bin/nvim
+prefix=~/code/.npm
