@@ -112,7 +112,7 @@
 
 [core]
 	autocrlf = false
-	editor = emacs -nw
+	editor = lvim
 	excludesfile = ~/.gitignore
 
 [advice]
