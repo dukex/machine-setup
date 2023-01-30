@@ -1,3 +1,6 @@
-cache=~/code/.npm/cache
+cache=/home/duke/code/.npm/cache
 editor=/usr/bin/nvim
-prefix=~/code/.npm
+prefix=/home/duke/code/.npm
+registry=https://registry.npmjs.org/
+//npm.pkg.github.com/:_authToken=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
+@youse-seguradora:registry=https://npm.pkg.github.com/

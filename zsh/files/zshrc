@@ -10,3 +10,6 @@ source $HOME/.zsh/0_path.zsh
 source $HOME/.zsh/aliases.zsh
 source $HOME/.zsh/history.zsh
 source $HOME/.zsh/antigen.zsh
+source $HOME/.zsh/asdf.zsh
+
+. "/home/duke/.acme.sh/acme.sh.env"

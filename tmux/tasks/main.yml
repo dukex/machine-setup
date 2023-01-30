@@ -1,7 +1,7 @@
 - name: "tmux : install"
   tags:
     - tmux
-  become: yes
+  become: True
   package:
     name:
       - tmux

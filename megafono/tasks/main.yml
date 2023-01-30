@@ -1,11 +1,11 @@
 - name: "megafono : setup hosts to megafono.development"
+  become: True
   tags:
     - megafono
-  win_lineinfile:
-    dest: C:\Windows\system32\drivers\etc\hosts
+  lineinfile:
+    dest: /etc/hosts
     regexp: "127.0.0.1\t{{ item }}"
     line: "127.0.0.1\t{{ item }}"
-  when: is_windows
   with_items:
     - megafono.development
     - cockpit.megafono.development

@@ -1,5 +1,6 @@
 # path, the 0 in the filename causes this to load first
 path=(
+  $HOME/code/.asdf/shims
   /usr/bin
   /usr/local/{bin,sbin}
   $path
@@ -7,4 +8,6 @@ path=(
   $HOME/.local/bin
   $HOME/.cargo/bin
   $HOME/code/.npm/bin
+  $HOME/code/android-studio/bin
+  $HOME/code/flutter/bin
 )

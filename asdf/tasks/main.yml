@@ -8,9 +8,10 @@
     - golanf
     - erlang
     - rust
+    - java
   yay:
     name:
-      - asdf-vm 
+      - asdf-vm
     state: latest
     update_cache: yes
   when: is_linux
@@ -25,6 +26,7 @@
     - golanf
     - erlang
     - rust
+    - java
   shell: /opt/asdf-vm/bin/asdf list
   register: asdf_list
   when: is_linux
@@ -64,7 +66,7 @@
     - asdf
     - languages
     - nodejs
-  shell: /opt/asdf-vm/bin/asdf install nodejs lts 
+  shell: /opt/asdf-vm/bin/asdf install nodejs lts
   when:
     - is_linux
     - asdf_list.stdout is defined and asdf_list.stdout.find('nodejs') != -1
@@ -99,6 +101,26 @@
     - is_linux
     - asdf_list.stdout is defined and asdf_list.stdout.find('golang') == -1
 
+- name: "asdf : java"
+  tags:
+    - asdf
+    - languages
+    - java
+  shell: /opt/asdf-vm/bin/asdf plugin-add java
+  when:
+    - is_linux
+    - asdf_list.stdout is defined and asdf_list.stdout.find('java') == -1
+
+- name: "asdf : maven"
+  tags:
+    - asdf
+    - languages
+    - java
+  shell: /opt/asdf-vm/bin/asdf plugin-add maven
+  when:
+    - is_linux
+    - asdf_list.stdout is defined and asdf_list.stdout.find('java') == -1
+
 - name: "asdf : nodejs npmrc"
   tags:
     - asdf
@@ -112,3 +134,16 @@
   when:
     - is_linux
     - asdf_list.stdout is defined and asdf_list.stdout.find('nodejs') != -1
+
+- name: "asdf : nodejs npmrc"
+  tags:
+    - asdf
+    - languages
+    - nodejs
+  file:
+    src: "~/.dotfiles/asdf/files/asdfrc"
+    dest: "~/.asdfrc"
+    state: link
+    force: yes
+  when:
+    - is_linux
