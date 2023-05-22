@@ -19,6 +19,18 @@ $ ssh-add ~/.ssh/id_ed25519
 
 Create the new ssh key in github 
 
+#### Debian 
+
+```
+$ sudo apt-get update
+$ sudo apt install git
+$ ssh-keygen -t ed25519 -C "emersonalmeidax@gmail.com"
+$ eval "$(ssh-agent -s)"
+$ ssh-add ~/.ssh/id_ed25519
+```
+
+Create the new ssh key in github 
+
 ### Ansible
 
 First of all, install ansible in your machine, you can follow [the ansible installation guide](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html).
