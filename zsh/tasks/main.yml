@@ -1,7 +1,7 @@
 - name: "zsh : install"
   tags:
     - zsh
-  become: yes
+  become: True
   package:
     name:
       - zsh
@@ -37,7 +37,7 @@
     - zsh
     - zsh-config
     - p10k
-  become: yes
+  become: True
   package:
     name:
       - manjaro-zsh-config
@@ -95,3 +95,12 @@
     - asdf
     - history
   when: is_linux
+
+- name: "zsh : install kube_alias"
+  tags:
+    - kube
+    - zsh
+  when: is_linux
+  get_url:
+    url: https://raw.githubusercontent.com/ahmetb/kubectl-aliases/master/.kubectl_aliases
+    dest: ~/.kubectl_aliases
