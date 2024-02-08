@@ -8,9 +8,6 @@
 ;
 ; Configs like `//<hostname>/:_authToken` are auth that is restricted
 ; to the registry host specified.
-
-//npm.pkg.github.com/:_authToken=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
-
 cache=/home/duke/code/.npm/cache
 editor=/usr/bin/lvim
 prefix=/home/duke/code/.npm
