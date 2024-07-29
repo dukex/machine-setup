@@ -31,6 +31,19 @@ $ ssh-add ~/.ssh/id_ed25519
 
 Create the new ssh key in github 
 
+
+#### MacOS 
+
+```
+$ xcode-select --install
+$ ssh-keygen -t ed25519 -C "emersonalmeidax@gmail.com"
+$ eval "$(ssh-agent -s)"
+$ ssh-add --apple-use-keychain ~/.ssh/id_ed25519
+```
+
+Create the new ssh key in github 
+
+
 ### Ansible
 
 First of all, install ansible in your machine, you can follow [the ansible installation guide](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html).
@@ -45,13 +58,18 @@ $ pacman -S ansible
 
 Given you're in Windows, read careful the [Setting up a Windows Host](https://docs.ansible.com/ansible/latest/user_guide/windows_setup.html) guide and the [Windows Support](#windows-support) here.
 
+#### MacOs
+
+```
+$ python3 -m pip install --user ansible
+```
 
 ### Dotfiles
 
 To download the dotfiles run:
 
 ```
-$ git clone git@github.com:dukex/dotfiles.git ~/.dotfiles
+$ git clone git@github.com:dukex/machine-setup.git ~/.dotfiles
 $ cd ~/.dotfiles
 ```
 
