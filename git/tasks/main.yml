@@ -5,7 +5,7 @@
     src: ~/.dotfiles/git/files/gitignore
     dest: ~/.gitignore
     state: link
-  when: is_linux
+  when: is_linux or is_macos
 
 - name: "git : link global gitconfig"
   tags:
@@ -14,7 +14,7 @@
     src: ~/.dotfiles/git/files/gitconfig
     dest: ~/.gitconfig
     state: link
-  when: is_linux
+  when: is_linux or is_macos
 
 - name: "git : create user gitconfig"
   tags:
@@ -23,4 +23,4 @@
     content: ""
     dest: ~/.gitconfig.user
     force: no
-  when: is_linux
+  when: is_linux or is_macos

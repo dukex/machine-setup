@@ -1,0 +1,40 @@
+- name: "editor : macos : install lazygit"
+  homebrew:
+    name: lazygit
+  when: is_macos
+  tags:
+    - editor
+    - git
+    - vim
+
+- name: "editor : macos : install neovim"
+  homebrew:
+    name: neovim
+  when: is_macos
+  tags:
+    - editor
+    - git
+    - vim
+
+- name: "editor : macos : install nerd font"
+  homebrew_cask:
+    name: font-hack-nerd-font
+  when: is_macos
+  tags:
+    - editor
+    - git
+    - vim
+
+- name: "editor : macos : install vscode"
+  homebrew_cask:
+    name: visual-studio-code
+  when: is_macos
+  tags:
+    - editor
+    - git
+    - vscode
+
+
+
+
+

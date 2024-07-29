@@ -5,17 +5,21 @@
       tags:
         - always
       set_fact:
-        is_wsl: ansible_facts.env.WSL_DISTRO_NAME == 'Debian'
-        is_debian: ansible_facts.distribution == 'Debian'
-        is_arch: ansible_facts.distribution == 'Archlinux'
-        is_windows: ansible_facts.os_family == 'Windows'
-        is_linux: ansible_facts.os_family != 'Windows'
+        is_wsl: "{{'WSL_DISTRO_NAME' in ansible_facts.env}}"
+        is_debian: "{{ansible_facts.distribution == 'Debian'}}"
+        is_arch: "{{ansible_facts.distribution == 'Archlinux'}}"
+        is_windows: "{{ansible_facts.os_family == 'Windows'}}"
+        is_linux: "{{ansible_facts.os_family == 'Linux'}}"
+        is_macos: "{{ansible_facts.os_family == 'Darwin'}}"
+
   roles:
     - yay
+    - brew
     - zsh
     - asdf
     - docker
     - git
     - the_silver_searcher
+    - editor
     - tmux
     - megafono

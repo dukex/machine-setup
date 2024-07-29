@@ -1,4 +1,4 @@
-- name: "zsh : install"
+- name: "zsh : linux : install"
   tags:
     - zsh
   become: True
@@ -7,6 +7,13 @@
       - zsh
     state: latest
   when: is_linux
+
+- name: "zsh : macos : install"
+  tags:
+    - zsh
+  homebrew:
+    name: zsh
+  when: is_macos
 
 - name: "zsh : create directories"
   tags:
@@ -20,7 +27,7 @@
     - ~/.zsh
     - ~/bin
     - ~/.antigen
-  when: is_linux
+  when: is_linux or is_macos
 
 - name: "zsh : install antigen"
   tags:
@@ -30,7 +37,7 @@
   get_url:
     url: https://git.io/antigen
     dest: ~/.antigen/antigen.zsh
-  when: is_linux
+  when: is_linux or is_macos
 
 - name: "zsh : uninstall default p10k"
   tags:
@@ -45,7 +52,7 @@
     state: absent
   when: is_arch
 
-- name: "zsh : install p10k"
+- name: "zsh : arch :  install p10k"
   tags:
     - zsh
     - p10k
@@ -54,6 +61,16 @@
       - zsh-theme-powerlevel10k-git
     state: latest
   when: is_arch
+
+- name: "zsh : macos : install p10k"
+  tags:
+    - zsh
+    - p10k
+  git:
+    repo: https://github.com/romkatv/powerlevel10k.git
+    dest: ~/powerlevel10k
+    depth: 1
+  when: is_macos
 
 - name: "zsh : link .zshrc"
   tags:
@@ -64,7 +81,7 @@
     dest: "~/.zshrc"
     state: link
     force: yes
-  when: is_linux
+  when: is_linux or is_macos
 
 - name: "zsh : link .p10k"
   tags:
@@ -76,7 +93,7 @@
     dest: "~/.p10k.zsh"
     state: link
     force: yes
-  when: is_linux
+  when: is_linux or is_macos
 
 - name: "zsh : link configuration"
   tags:
@@ -94,13 +111,13 @@
     - antigen
     - asdf
     - history
-  when: is_linux
+  when: is_linux or is_macos
 
 - name: "zsh : install kube_alias"
   tags:
     - kube
     - zsh
-  when: is_linux
+  when: is_linux or is_macos
   get_url:
     url: https://raw.githubusercontent.com/ahmetb/kubectl-aliases/master/.kubectl_aliases
     dest: ~/.kubectl_aliases

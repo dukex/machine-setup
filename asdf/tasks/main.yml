@@ -9,12 +9,11 @@
     - erlang
     - rust
     - java
-  yay:
-    name:
-      - asdf-vm
-    state: latest
-    update_cache: yes
-  when: is_linux
+  git:
+    repo: https://github.com/asdf-vm/asdf.git
+    dest: ~/code/.asdf
+    depth: 1
+  when: is_linux or is_macos
 
 - name: "asdf : fetch installed asdf plugins"
   tags:
@@ -27,18 +26,18 @@
     - erlang
     - rust
     - java
-  shell: /opt/asdf-vm/bin/asdf list
+  shell: ~/code/.asdf/bin/asdf list
   register: asdf_list
-  when: is_linux
+  when: is_linux or is_macos
 
 - name: "asdf : elixir"
   tags:
     - asdf
     - languages
     - elixir
-  shell: /opt/asdf-vm/bin/asdf plugin-add elixir https://github.com/asdf-vm/asdf-elixir.git
+  shell: ~/code/.asdf/bin/asdf plugin-add elixir https://github.com/asdf-vm/asdf-elixir.git
   when:
-    - is_linux
+    - is_linux or is_macos
     - asdf_list.stdout is defined and asdf_list.stdout.find('elixir') == -1
 
 - name: "asdf : ruby"
@@ -46,9 +45,9 @@
     - asdf
     - languages
     - ruby
-  shell: /opt/asdf-vm/bin/asdf plugin-add ruby https://github.com/asdf-vm/asdf-ruby.git
+  shell: ~/code/.asdf/bin/asdf plugin-add ruby https://github.com/asdf-vm/asdf-ruby.git
   when:
-    - is_linux
+    - is_linux or is_macos
     - asdf_list.stdout is defined and asdf_list.stdout.find('ruby') == -1
 
 - name: "asdf : nodejs"
@@ -56,9 +55,9 @@
     - asdf
     - languages
     - nodejs
-  shell: /opt/asdf-vm/bin/asdf plugin-add nodejs https://github.com/asdf-vm/asdf-nodejs.git
+  shell: ~/code/.asdf/bin/asdf plugin-add nodejs https://github.com/asdf-vm/asdf-nodejs.git
   when:
-    - is_linux
+    - is_linux or is_macos
     - asdf_list.stdout is defined and asdf_list.stdout.find('nodejs') == -1
 
 - name: "asdf : nodejs install lts"
@@ -66,9 +65,9 @@
     - asdf
     - languages
     - nodejs
-  shell: /opt/asdf-vm/bin/asdf install nodejs lts
+  shell: ~/code/.asdf/bin/asdf install nodejs latest
   when:
-    - is_linux
+    - is_linux or is_macos
     - asdf_list.stdout is defined and asdf_list.stdout.find('nodejs') != -1
 
 - name: "asdf : erlang"
@@ -76,29 +75,41 @@
     - asdf
     - languages
     - erlang
-  shell: /opt/asdf-vm/bin/asdf plugin-add erlang https://github.com/asdf-vm/asdf-erlang.git
+  shell: ~/code/.asdf/bin/asdf plugin-add erlang https://github.com/asdf-vm/asdf-erlang.git
   when:
-    - is_linux
+    - is_linux or is_macos
     - asdf_list.stdout is defined and asdf_list.stdout.find('erlang') == -1
 
 - name: "asdf : rust"
   tags:
     - asdf
     - languages
+    - editor
+    - vim
     - rust
-  shell: /opt/asdf-vm/bin/asdf plugin-add rust && /opt/asdf-vm/bin/asdf install rust stable && /opt/asdf-vm/bin/asdf global rust stable
+  shell: ~/code/.asdf/bin/asdf plugin-add rust && /opt/asdf-vm/bin/asdf install rust stable && /opt/asdf-vm/bin/asdf global rust stable
   when:
-    - is_linux
+    - is_linux or is_macos
     - asdf_list.stdout is defined and asdf_list.stdout.find('rust') == -1
+
+- name: "asdf : rust install stable"
+  tags:
+    - asdf
+    - languages
+    - rust
+  shell: ~/code/.asdf/bin/asdf install rust stable
+  when:
+    - is_linux or is_macos
+    - asdf_list.stdout is defined and asdf_list.stdout.find('rust') != -1
 
 - name: "asdf : golang"
   tags:
     - asdf
     - languages
     - golang
-  shell: /opt/asdf-vm/bin/asdf plugin-add golang https://github.com/kennyp/asdf-golang.git
+  shell: ~/code/.asdf/bin/asdf plugin-add golang https://github.com/kennyp/asdf-golang.git
   when:
-    - is_linux
+    - is_linux or is_macos
     - asdf_list.stdout is defined and asdf_list.stdout.find('golang') == -1
 
 - name: "asdf : java"
@@ -106,9 +117,9 @@
     - asdf
     - languages
     - java
-  shell: /opt/asdf-vm/bin/asdf plugin-add java
+  shell: ~/code/.asdf/bin/asdf plugin-add java
   when:
-    - is_linux
+    - is_linux or is_macos
     - asdf_list.stdout is defined and asdf_list.stdout.find('java') == -1
 
 - name: "asdf : maven"
@@ -116,9 +127,9 @@
     - asdf
     - languages
     - java
-  shell: /opt/asdf-vm/bin/asdf plugin-add maven
+  shell: ~/code/.asdf/bin/asdf plugin-add maven
   when:
-    - is_linux
+    - is_linux or is_macos
     - asdf_list.stdout is defined and asdf_list.stdout.find('java') == -1
 
 - name: "asdf : nodejs npmrc"
@@ -132,7 +143,7 @@
     state: link
     force: yes
   when:
-    - is_linux
+    - is_linux or is_macos
     - asdf_list.stdout is defined and asdf_list.stdout.find('nodejs') != -1
 
 - name: "asdf : nodejs npmrc"
@@ -146,4 +157,4 @@
     state: link
     force: yes
   when:
-    - is_linux
+    - is_linux or is_macos
