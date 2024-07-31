@@ -3,8 +3,6 @@ path=(
   $HOME/code/.asdf/shims
   $HOME/code/.asdf/bin
   /opt/homebrew/bin
-  /usr/bin
-  /usr/local/{bin,sbin}
   $path
   $HOME/bin
   $HOME/.local/bin
@@ -12,4 +10,6 @@ path=(
   $HOME/code/.npm/bin
   $HOME/code/android-studio/bin
   $HOME/code/flutter/bin
+  /usr/bin
+  /usr/local/{bin,sbin}
 )
