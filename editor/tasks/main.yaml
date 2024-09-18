@@ -34,6 +34,16 @@
     - git
     - vscode
 
+- name: "editor : link global nvim config"
+  tags:
+    - editor
+    - vim
+  file:
+    src: ~/.dotfiles/editor/files/config.lua
+    dest: ~/.config/lvim/config.lua
+    state: link
+  when: is_linux or is_macos
+
 
 
 
