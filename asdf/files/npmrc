@@ -8,9 +8,9 @@
 ;
 ; Configs like `//<hostname>/:_authToken` are auth that is restricted
 ; to the registry host specified.
-cache=/home/duke/code/.npm/cache
+cache=~/code/.npm/cache
 editor=/usr/bin/lvim
-prefix=/home/duke/code/.npm
+prefix=~/code/.npm
 registry=https://registry.npmjs.org/
 
 ;;;;
