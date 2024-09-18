@@ -76,6 +76,8 @@ lvim.builtin.treesitter.ensure_installed = {
   "css",
   "rust",
   "java",
+  "scala",
+  "kotlin",
   "yaml",
   "html"
 }
@@ -162,15 +164,15 @@ formatters.setup {
 -- Additional Plugins
 lvim.plugins = {
   { "ntpeters/vim-better-whitespace" },
-{
+  {
     'akinsho/flutter-tools.nvim',
     lazy = false,
     dependencies = {
-        'nvim-lua/plenary.nvim',
-        'stevearc/dressing.nvim', -- optional for vim.ui.select
+      'nvim-lua/plenary.nvim',
+      'stevearc/dressing.nvim', -- optional for vim.ui.select
     },
     config = true,
-},
+  },
   {
     "rose-pine/neovim",
     config = function()
@@ -279,3 +281,36 @@ vim.filetype.add({
     arb = "json",
   },
 })
+
+lvim.plugins = {
+  "nvim-dap",
+  {
+    "scalameta/nvim-metals",
+    config = function()
+      require("user.metals").config()
+    end,
+  },
+}
+
+local dap = require('dap')
+
+dap.configurations.scala = {
+  {
+    type = "scala",
+    request = "launch",
+    name = "Run or Test Target",
+    metals = {
+      runType = "runOrTestFile",
+    },
+  },
+  {
+    type = "scala",
+    request = "launch",
+    name = "Test Target",
+    metals = {
+      runType = "testTarget",
+    },
+  },
+}
+
+lvim.builtin.dap.active = true
