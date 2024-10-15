@@ -62,6 +62,7 @@ Given you're in Windows, read careful the [Setting up a Windows Host](https://do
 
 ```
 $ python3 -m pip install --user ansible
+$ ansible-galaxy collection install community.general
 ```
 
 ### Dotfiles

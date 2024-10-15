@@ -11,7 +11,7 @@
 - name: "zsh : macos : install"
   tags:
     - zsh
-  homebrew:
+  community.general.homebrew:
     name: zsh
   when: is_macos
 
@@ -111,6 +111,7 @@
     - antigen
     - asdf
     - history
+    - k8s
   when: is_linux or is_macos
 
 - name: "zsh : install kube_alias"
@@ -121,3 +122,17 @@
   get_url:
     url: https://raw.githubusercontent.com/ahmetb/kubectl-aliases/master/.kubectl_aliases
     dest: ~/.kubectl_aliases
+
+- name: "zsh : macos : fzf"
+  tags:
+    - zsh
+  community.general.homebrew:
+    name: fzf
+  when: is_macos
+
+- name: "zsh : macos : yq"
+  tags:
+    - zsh
+  community.general.homebrew:
+    name: yq
+  when: is_macos
