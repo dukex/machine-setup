@@ -11,11 +11,11 @@ source $HOME/.zsh/aliases.zsh
 source $HOME/.zsh/history.zsh
 source $HOME/.zsh/antigen.zsh
 source $HOME/.zsh/asdf.zsh
+source $HOME/.zsh/k8s.zsh
 
 [[ ! -f /home/duke/.acme.sh/acme.sh.env ]] || source /home/duke/.acme.sh/acme.sh.env
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 fpath=(~/.zsh/completion $fpath)
+[[ -f $HOME/.dart-cli-completion/zsh-config.zsh ]] && . $HOME/.dart-cli-completion/zsh-config.zsh || true
 
-source $HOME/.zsh/k8s.zsh
+autoload -Uz compinit ; compinit

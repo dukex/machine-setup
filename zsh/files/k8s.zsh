@@ -1,3 +1,5 @@
+alias kubectl="kubecolor"
+
 ek() {
     if [ -n "$1" ]; then
         CONFIG=$(rg --max-depth 3 -l '^kind: Config$' $HOME/.kube/ 2>/dev/null \
