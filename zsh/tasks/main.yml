@@ -112,6 +112,8 @@
     - asdf
     - history
     - k8s
+    - editor
+    - ledger
   when: is_linux or is_macos
 
 - name: "zsh : install kube_alias"
