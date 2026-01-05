@@ -13,10 +13,11 @@ source $HOME/.zsh/antigen.zsh
 source $HOME/.zsh/mise.zsh
 source $HOME/.zsh/k8s.zsh
 source $HOME/.zsh/editor.zsh
-source $HOME/.zsh/ledger.zsh
 
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 fpath=(~/.zsh/completion $fpath)
 [[ -f $HOME/.dart-cli-completion/zsh-config.zsh ]] && . $HOME/.dart-cli-completion/zsh-config.zsh || true
 
 autoload -Uz compinit ; compinit
+
+export GPG_TTY=$(tty)
