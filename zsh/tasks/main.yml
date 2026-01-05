@@ -109,7 +109,7 @@
     - 0_path
     - aliases
     - antigen
-    - asdf
+    - mise
     - history
     - k8s
     - editor
