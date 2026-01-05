@@ -135,7 +135,8 @@
 
 [user]
 	email = emersonalmeidax@gmail.com
-	name = Emerson Almeida
+	name = Duke
+	signingkey = 08EA481B88DCA40A
 
 [github]
 	user = dukex
