@@ -108,3 +108,18 @@
     dest: /usr/local/bin/docker-compose
     mode: "0555"
   when: is_linux and not is_wsl
+
+- name: "docker : macos : install apple container"
+  tags:
+    - docker
+  community.general.homebrew:
+    name: container
+  when: is_macos
+
+- name: "docker : macos : start apple container services"
+  tags:
+    - docker
+  shell: container system start --enable-kernel-install
+  environment:
+    PATH: "/opt/homebrew/bin:{{ ansible_env.PATH }}"
+  when: is_macos
