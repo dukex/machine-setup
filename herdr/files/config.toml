@@ -1,0 +1,21 @@
+onboarding = false
+[theme]
+name = "rose-pine"
+
+auto_switch = false
+[keys]
+prefix = "ctrl+a"
+detach = "prefix+ctrl+d"
+close_workspace = "prefix+ctrl+q"
+split_horizontal = "prefix+="
+split_vertical = 'prefix+"'
+reload_config = "prefix+r"
+resize_mode = "prefix+shift+r"
+last_pane = "prefix+a"
+
+[ui]
+agent_panel_sort = "priority"
+show_agent_labels_on_pane_borders = true
+
+[experimental]
+pane_history = true

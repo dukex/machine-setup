@@ -1,0 +1,34 @@
+- name: "herdr : macos : install"
+  tags:
+    - herdr
+  community.general.homebrew:
+    name: herdr
+  when: is_macos
+
+- name: "herdr : linux : install"
+  tags:
+    - herdr
+  shell: curl -fsSL https://herdr.dev/install.sh | sh
+  args:
+    creates: ~/.local/bin/herdr
+  when: is_linux
+
+- name: "herdr : create config directory"
+  tags:
+    - herdr
+    - herdr-config
+  file:
+    path: ~/.config/herdr
+    state: directory
+  when: is_linux or is_macos
+
+- name: "herdr : configuration"
+  tags:
+    - herdr
+    - herdr-config
+  file:
+    src: ~/.dotfiles/herdr/files/config.toml
+    dest: ~/.config/herdr/config.toml
+    state: link
+    force: yes
+  when: is_linux or is_macos
