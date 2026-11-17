@@ -13,7 +13,6 @@
         is_macos: "{{ansible_facts.os_family == 'Darwin'}}"
 
   roles:
-    - yay
     - brew
     - zsh
     - asdf

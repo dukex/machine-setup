@@ -227,10 +227,6 @@ $ ansible-playbook -i hosts playbook.yml --tags ripgrep --ask-become-pass
 
 [TODO]
 
-### yay
-
-[TODO]
-
 <a id="windows-support"></a>
 ## Windows Support
 
