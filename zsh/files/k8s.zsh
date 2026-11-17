@@ -1,6 +1,17 @@
 alias kubectl="kubecolor"
 
+ensure_aws_logged() {
+  aws s3 ls --profile caju-admin &> /dev/null
+
+  if [ $? -ne 0 ]; then
+    echo "You need to login to AWS"
+    aws sso login --profile caju-admin
+  fi
+}
+
 ek() {
+    ensure_aws_logged
+
     if [ -n "$1" ]; then
         CONFIG=$(rg --max-depth 3 -l '^kind: Config$' $HOME/.kube/ 2>/dev/null \
             | grep $1)
@@ -12,6 +23,11 @@ ek() {
     export KUBECONFIG=${CONFIG%:*}
     PROFILE=$(yq '.users[0].user.exec.env[0].value' $KUBECONFIG)
     REGION=$(yq '.users[0].user.exec.args' $KUBECONFIG | grep -A1 region | tail -1 | awk '{print $2}')
+}
+
+ek9s() {
+  ek
+  k9s
 }
 
 fn k() {

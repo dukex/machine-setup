@@ -39,37 +39,23 @@
     dest: ~/.antigen/antigen.zsh
   when: is_linux or is_macos
 
-- name: "zsh : uninstall default p10k"
+- name: "zsh : linux : install starship"
   tags:
     - zsh
-    - zsh-config
-    - p10k
+    - starship
   become: True
   package:
     name:
-      - manjaro-zsh-config
-      - zsh-theme-powerlevel10k
-    state: absent
-  when: is_arch
-
-- name: "zsh : arch :  install p10k"
-  tags:
-    - zsh
-    - p10k
-  yay:
-    name:
-      - zsh-theme-powerlevel10k-git
+      - starship
     state: latest
-  when: is_arch
+  when: is_linux
 
-- name: "zsh : macos : install p10k"
+- name: "zsh : macos : install starship"
   tags:
     - zsh
-    - p10k
-  git:
-    repo: https://github.com/romkatv/powerlevel10k.git
-    dest: ~/powerlevel10k
-    depth: 1
+    - starship
+  community.general.homebrew:
+    name: starship
   when: is_macos
 
 - name: "zsh : link .zshrc"
@@ -79,18 +65,6 @@
   file:
     src: "~/.dotfiles/zsh/files/zshrc"
     dest: "~/.zshrc"
-    state: link
-    force: yes
-  when: is_linux or is_macos
-
-- name: "zsh : link .p10k"
-  tags:
-    - zsh
-    - p10k
-    - zsh-config
-  file:
-    src: "~/.dotfiles/zsh/files/p10k.zsh"
-    dest: "~/.p10k.zsh"
     state: link
     force: yes
   when: is_linux or is_macos
@@ -105,15 +79,14 @@
     state: link
     force: yes
   with_items:
-    - 0000_before
     - 0_path
+    - 1_starship
     - aliases
     - antigen
     - mise
     - history
     - k8s
-    - editor
-    - ledger
+    - ollama
   when: is_linux or is_macos
 
 - name: "zsh : install kube_alias"
