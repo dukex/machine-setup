@@ -19,7 +19,6 @@
   tags:
     - zsh
     - zsh-config
-    - antigen
   file:
     path: "{{ item }}"
     state: directory
@@ -27,17 +26,21 @@
     - ~/.zsh
     - ~/bin
     - ~/.config
-    - ~/.antigen
   when: is_linux or is_macos
 
-- name: "zsh : install antigen"
+- name: "zsh : install plugins"
   tags:
     - zsh
     - zsh-config
-    - antigen
-  get_url:
-    url: https://git.io/antigen
-    dest: ~/.antigen/antigen.zsh
+  git:
+    repo: "https://github.com/{{ item }}.git"
+    dest: "~/.zsh/plugins/{{ item | basename }}"
+    depth: 1
+  with_items:
+    - zsh-users/zsh-autosuggestions
+    - zsh-users/zsh-syntax-highlighting
+    - zsh-users/zsh-completions
+    - hlissner/zsh-autopair
   when: is_linux or is_macos
 
 - name: "zsh : linux : install starship"
@@ -95,7 +98,7 @@
     - 0_path
     - 1_starship
     - aliases
-    - antigen
+    - plugins
     - mise
     - history
     - k8s
