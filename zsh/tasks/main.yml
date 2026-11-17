@@ -105,15 +105,6 @@
     - ollama
   when: is_linux or is_macos
 
-- name: "zsh : install kube_alias"
-  tags:
-    - kube
-    - zsh
-  when: is_linux or is_macos
-  get_url:
-    url: https://raw.githubusercontent.com/ahmetb/kubectl-aliases/master/.kubectl_aliases
-    dest: ~/.kubectl_aliases
-
 - name: "zsh : macos : shell tools"
   tags:
     - zsh
