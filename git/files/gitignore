@@ -44,3 +44,7 @@ Session.vim
 # ----------------------------------------------------------------------------------------------
 .sass-cache
 .kotlin
+
+**/.claude/settings.local.json
+
+**/.claude/.cc-writes/

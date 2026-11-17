@@ -108,7 +108,7 @@
 [push]
 	# 'git push' will push the current branch to its tracking branch
 	# the usual default is to push all branches
-	default = upstream
+	default = current
 
 [core]
 	autocrlf = false
@@ -136,8 +136,6 @@
 [user]
 	email = emersonalmeidax@gmail.com
 	name = Duke
-	signingkey = 08EA481B88DCA40A
-
 [github]
 	user = dukex
 
@@ -156,7 +154,5 @@
 	prune = true
 [init]
 	defaultBranch = main
-[commit]
-	gpgsign = true
-[tag]
-	gpgSign = true
+[url "git@github.com:"]
+	insteadOf = https://github.com/
