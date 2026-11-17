@@ -125,16 +125,41 @@
     url: https://raw.githubusercontent.com/ahmetb/kubectl-aliases/master/.kubectl_aliases
     dest: ~/.kubectl_aliases
 
-- name: "zsh : macos : fzf"
+- name: "zsh : install mise"
+  tags:
+    - zsh
+    - mise
+  shell: curl -fsSL https://mise.run | sh
+  args:
+    creates: ~/.local/bin/mise
+  when: is_linux or is_macos
+
+- name: "zsh : macos : shell tools"
   tags:
     - zsh
   community.general.homebrew:
-    name: fzf
+    name:
+      - fzf
+      - yq
+      - eza
   when: is_macos
 
-- name: "zsh : macos : yq"
+- name: "zsh : linux : shell tools"
   tags:
     - zsh
-  community.general.homebrew:
-    name: yq
-  when: is_macos
+  become: True
+  package:
+    name:
+      - fzf
+      - eza
+    state: latest
+  when: is_linux
+
+- name: "zsh : linux : yq"
+  tags:
+    - zsh
+  get_url:
+    url: "https://github.com/mikefarah/yq/releases/latest/download/yq_linux_{{ 'arm64' if ansible_facts.architecture == 'aarch64' else 'amd64' }}"
+    dest: ~/bin/yq
+    mode: "0755"
+  when: is_linux
