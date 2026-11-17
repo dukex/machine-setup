@@ -19,7 +19,7 @@
     - asdf
     - docker
     - git
-    - the_silver_searcher
+    - ripgrep
     - editor
     - tmux
     - megafono
