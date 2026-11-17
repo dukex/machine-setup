@@ -1,0 +1,35 @@
+- name: "mise : install"
+  tags:
+    - mise
+    - languages
+  shell: curl -fsSL https://mise.run | sh
+  args:
+    creates: ~/.local/bin/mise
+  when: is_linux or is_macos
+
+- name: "mise : create config directory"
+  tags:
+    - mise
+    - languages
+  file:
+    path: ~/.config/mise/conf.d
+    state: directory
+  when: is_linux or is_macos
+
+- name: "mise : link languages config"
+  tags:
+    - mise
+    - languages
+  file:
+    src: ~/.dotfiles/mise/files/dotfiles.toml
+    dest: ~/.config/mise/conf.d/dotfiles.toml
+    state: link
+    force: yes
+  when: is_linux or is_macos
+
+- name: "mise : install languages"
+  tags:
+    - mise
+    - languages
+  shell: ~/.local/bin/mise install --yes
+  when: is_linux or is_macos
