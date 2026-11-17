@@ -23,3 +23,12 @@
     update_cache: yes
   when:
     - is_arch
+
+- name: "ripgrep : install package (macos)"
+  tags:
+    - ripgrep
+    - editor
+    - vim
+  community.general.homebrew:
+    name: ripgrep
+  when: is_macos
