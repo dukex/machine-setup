@@ -8,3 +8,4 @@ alias dlaude="CLAUDE_CONFIG_DIR=/Users/emerson.almeidacaju.com.br/Documents/Know
 
 alias myandroid="scrcpy -m 1024"
 alias vim=nvim
+[[ $OSTYPE == darwin* ]] && (( $+commands[container] )) && alias docker=container
