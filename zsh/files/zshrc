@@ -4,14 +4,13 @@ source $HOME/.zsh/1_starship.zsh
 source $HOME/.zsh/aliases.zsh
 
 source $HOME/.zsh/history.zsh
-# source $HOME/.zsh/antigen.zsh
 source $HOME/.zsh/mise.zsh
 source $HOME/.zsh/k8s.zsh
 
 # fpath=(~/.zsh/completion $fpath)
 # [[ -f $HOME/.dart-cli-completion/zsh-config.zsh ]] && . $HOME/.dart-cli-completion/zsh-config.zsh || true
 
-autoload -Uz compinit ; compinit
+source $HOME/.zsh/plugins.zsh
 
 export GPG_TTY=$(tty)
 

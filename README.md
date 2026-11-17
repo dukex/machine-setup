@@ -87,7 +87,7 @@ This command will download, install, link, all dependencies, files, and configur
 
 ### ZSH
 
-This scrippt will install the packages zsh, zsh-syntax-highlighting, zsh-history-substring-search, zsh-completions, zsh-autosuggestions, zsh-autopair and zsh-extract via antigen.
+This script will install zsh and clone the plugins zsh-autosuggestions, zsh-syntax-highlighting, zsh-completions and zsh-autopair into `~/.zsh/plugins`.
 
 On windows, the zsh will just be installed in the WSL.
 
