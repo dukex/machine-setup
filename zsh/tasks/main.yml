@@ -26,6 +26,7 @@
   with_items:
     - ~/.zsh
     - ~/bin
+    - ~/.config
     - ~/.antigen
   when: is_linux or is_macos
 
@@ -65,6 +66,18 @@
   file:
     src: "~/.dotfiles/zsh/files/zshrc"
     dest: "~/.zshrc"
+    state: link
+    force: yes
+  when: is_linux or is_macos
+
+- name: "zsh : link starship.toml"
+  tags:
+    - zsh
+    - zsh-config
+    - starship
+  file:
+    src: "~/.dotfiles/zsh/files/starship.toml"
+    dest: "~/.config/starship.toml"
     state: link
     force: yes
   when: is_linux or is_macos
