@@ -1,6 +1,6 @@
-- name: "the The Silver Searcher : install package (Debian based)"
+- name: "ripgrep : install package (Debian based)"
   tags:
-    - the-silver-searcher
+    - ripgrep
     - editor
     - vim
   become: yes
@@ -11,9 +11,9 @@
   when:
     - is_debian
 
-- name: "the The Silver Searcher : install package (Fedora, Arch)"
+- name: "ripgrep : install package (Fedora, Arch)"
   tags:
-    - the-silver-searcher
+    - ripgrep
     - editor
     - vim
   become: yes

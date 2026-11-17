@@ -211,16 +211,16 @@ $ ansible-playbook -i hosts playbook.yml --tags nodejs
 
 
 
-### ~~The Silver Searcher~~ ripgrep
+### ripgrep
 
 The ripgrep recursively searches directories for a regex pattern while respecting your gitignore.
 
 On windows, the ripgrep will just be installed in the WSL.
 
-To install just the The Silver Searcher, run:
+To install just ripgrep, run:
 
 ```
-$ ansible-playbook -i hosts playbook.yml --tags the-silver-searcher --ask-become-pass
+$ ansible-playbook -i hosts playbook.yml --tags ripgrep --ask-become-pass
 ```
 
 ### Tmux
