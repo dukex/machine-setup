@@ -12,6 +12,7 @@ path=(
   $HOME/code/flutter/bin
   $HOME/.deno/bin
   $HOME/neovim/bin
+  $HOME/Library/Android/sdk/platform-tools
   /usr/bin
   /usr/local/{bin,sbin}
   ~/Library/Application Support/Coursier/bin
