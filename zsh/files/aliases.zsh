@@ -7,4 +7,4 @@ alias :q='exit'
 alias dlaude="CLAUDE_CONFIG_DIR=/Users/emerson.almeidacaju.com.br/Documents/Knowledge/99-System/ClaudeCode claude"
 
 alias myandroid="scrcpy -m 1024"
-alias vim=neovim
+alias vim=nvim
