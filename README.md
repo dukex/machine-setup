@@ -143,22 +143,14 @@ To install just the git config, run:
 $ ansible-playbook -i hosts playbook.yml --tags git
 ```
 
-### Tmux
+### herdr
 
-This dotfile will install the tmux and the tpm(tmux plugin manager).
+This dotfile will install [herdr](https://herdr.dev), the terminal multiplexer, and link `herdr/files/config.toml` to `~/.config/herdr/config.toml`.
 
-On windows, the tmux will just be installed in the WSL.
-
-To install just the tmux, run:
+To install just herdr, run:
 
 ```
-$ ansible-playbook -i hosts playbook.yml --tags tmux --ask-become-pass
-```
-
-To install just the tpm, run:
-
-```
-$ ansible-playbook -i hosts playbook.yml --tags tpm
+$ ansible-playbook -i hosts playbook.yml --tags herdr
 ```
 
 ### Languages support (mise)
@@ -190,10 +182,6 @@ To install just ripgrep, run:
 ```
 $ ansible-playbook -i hosts playbook.yml --tags ripgrep --ask-become-pass
 ```
-
-### Tmux
-
-[TODO]
 
 <a id="windows-support"></a>
 ## Windows Support
