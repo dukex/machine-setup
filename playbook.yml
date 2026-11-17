@@ -16,7 +16,7 @@
     - yay
     - brew
     - zsh
-    - asdf
+    - mise
     - docker
     - git
     - ripgrep

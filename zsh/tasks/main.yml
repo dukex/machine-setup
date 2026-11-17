@@ -114,15 +114,6 @@
     url: https://raw.githubusercontent.com/ahmetb/kubectl-aliases/master/.kubectl_aliases
     dest: ~/.kubectl_aliases
 
-- name: "zsh : install mise"
-  tags:
-    - zsh
-    - mise
-  shell: curl -fsSL https://mise.run | sh
-  args:
-    creates: ~/.local/bin/mise
-  when: is_linux or is_macos
-
 - name: "zsh : macos : shell tools"
   tags:
     - zsh

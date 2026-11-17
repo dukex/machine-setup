@@ -161,55 +161,23 @@ To install just the tpm, run:
 $ ansible-playbook -i hosts playbook.yml --tags tpm
 ```
 
-### Languages support (asdf)
+### Languages support (mise)
 
-This dotfile support the following languages, via asdf:
+This dotfile installs [mise](https://mise.jdx.dev/) and the following languages through it:
 
-- Elixir
-- Ruby
-- Erlang
+- Rust
 - Golang
 - Nodejs
 
-You can read more about asdf in [asdf-vm.com](https://asdf-vm.com/).
+The versions live in `mise/files/dotfiles.toml`, linked to `~/.config/mise/conf.d/dotfiles.toml`, so they are added on top of any `~/.config/mise/config.toml` already on the machine.
 
-On windows, the asdf will just be installed in the WSL.
+On windows, mise will just be installed in the WSL.
 
-To install just the languages support, run:
+To install just mise and the languages, run:
 
 ```
 $ ansible-playbook -i hosts playbook.yml --tags languages
 ```
-
-You can install a language separated
-
-
-**Elixir**
-```
-$ ansible-playbook -i hosts playbook.yml --tags elixir
-```
-
-**Ruby**
-```
-$ ansible-playbook -i hosts playbook.yml --tags ruby
-```
-
-**Erlang**
-```
-$ ansible-playbook -i hosts playbook.yml --tags elixir
-```
-
-**Golang**
-```
-$ ansible-playbook -i hosts playbook.yml --tags golang
-```
-
-**Nodejs**
-```
-$ ansible-playbook -i hosts playbook.yml --tags nodejs
-```
-
-
 
 ### ripgrep
 
