@@ -13,5 +13,6 @@ source $HOME/.zsh/k8s.zsh
 source $HOME/.zsh/plugins.zsh
 
 export GPG_TTY=$(tty)
+export TF_PLUGIN_CACHE_DIR="$HOME/.terraform.d/plugin-cache"
 
 [[ ! -f ~/.zsh/local.zsh ]] || source ~/.zsh/local.zsh

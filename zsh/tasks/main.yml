@@ -26,6 +26,7 @@
     - ~/.zsh
     - ~/bin
     - ~/.config
+    - ~/.terraform.d/plugin-cache
   when: is_linux or is_macos
 
 - name: "zsh : install plugins"
